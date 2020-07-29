@@ -13,6 +13,10 @@ import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.parts.Localpart
 import java.io.IOException
 import java.net.InetAddress
+import org.jivesoftware.smack.roster.RosterEntry
+import org.jivesoftware.smack.roster.RosterGroup
+
+
 
 
 class Connection(context: Context) : ConnectionListener {
