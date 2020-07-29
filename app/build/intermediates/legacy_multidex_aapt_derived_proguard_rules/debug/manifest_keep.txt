@@ -1,0 +1,4 @@
+# Referenced at /home/nineleaps/AndroidStudioProjects/EaziPOC/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:13
+-keep class androidx.core.app.CoreComponentFactory { <init>(); }
+# Referenced at /home/nineleaps/AndroidStudioProjects/EaziPOC/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:13
+-keep class com.nineleaps.eazipoc.ApplicationClass { <init>(); }

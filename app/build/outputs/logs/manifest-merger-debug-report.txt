@@ -1,0 +1,224 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+MERGED from [androidx.multidex:multidex:2.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/ccbef321d279df26b618d55f2e525214/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.material:material:1.3.0-alpha02] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/828bbde08e9468568f5acd90ef6cdee5/material-1.3.0-alpha02/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-beta7] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/71d415918e7f5265c2c797eeba899a3e/constraintlayout-2.0.0-beta7/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/08830a9ee6c5ae94cafc61d7ace3c388/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/28a8c0af18f1b07d4114c9093a9e0570/core-ktx-1.3.1/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6deceff4d6384f735aa3f681e6d18bd5/lifecycle-extensions-2.2.0/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/978de44f1b63e9ef86fb051642491ce3/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/13aa94185569dd2c0f4fb2f3ea659e83/appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/22794e241f7f2697c0adacb8214f040b/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/e649716e2cd9993b8693752c7f7aa2cd/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/dbc05a101edbf8a98e911a29a2b5bcf1/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2fb32b634e7c19305bc4fc42930c19f5/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/1cee61dd88b5d47d44b749aae0fcf1b5/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/e88dc1b56917ffb39cb6e7365e3d9bd4/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/046e753bc0bde8c0ecf802c29a4da236/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2c49719a658780ed45d7752579636e80/fragment-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/a817f267d191516a6283d083b40108cb/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/8bc3662159f4f30339f118ad98329d1b/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4736c31fe3352088a40f66f271e125c8/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7f61f2f5e0c9cb271767b788e912675e/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7d31582a3bb96f16d8cd837979499948/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/bac4df00095d1c1ad38259ffc2679278/activity-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4cd1bb9126edead521009de53a367e95/core-1.3.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/c1bb6ab4b55ab612adddc2d5ad0f0062/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:17:1-32:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/164088543227bd9319303ac61f3f4b83/lifecycle-service-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/83aeb99542ba657804d16532a570f25d/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/99e1a48f634bb5c344c2104d97276785/lifecycle-livedata-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/b65759833cb841765bb9c121c48fccff/lifecycle-viewmodel-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/c30fdfbcfb35442d3e04868a1a50ca24/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2ea6e0016e4aaf927d3661390911529c/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/0b0f35bfceba206c8e59bf74cf615c55/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7a8241574dcbada1d70fe8071fad0958/lifecycle-viewmodel-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/241683a4ab23dfac39cbbdac674781a3/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d91c2d967745332dfa641b1ba0811559/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/f7028f387f7413f656716fb889edb6fb/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/ebf9b6a515af6f8a9e97d1db6f1fdd66/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6c41bab13c982e79ef1c88320ffd7e08/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/a035e37f694f3d8bc96f74e96cc84c2c/annotation-experimental-1.0.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+	package
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:3:5-36
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:5:22-64
+application
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:7:5-26:19
+MERGED from [com.google.android.material:material:1.3.0-alpha02] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/828bbde08e9468568f5acd90ef6cdee5/material-1.3.0-alpha02/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.3.0-alpha02] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/828bbde08e9468568f5acd90ef6cdee5/material-1.3.0-alpha02/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-beta7] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/71d415918e7f5265c2c797eeba899a3e/constraintlayout-2.0.0-beta7/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-beta7] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/71d415918e7f5265c2c797eeba899a3e/constraintlayout-2.0.0-beta7/AndroidManifest.xml:9:5-20
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6deceff4d6384f735aa3f681e6d18bd5/lifecycle-extensions-2.2.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6deceff4d6384f735aa3f681e6d18bd5/lifecycle-extensions-2.2.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.core:core:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4cd1bb9126edead521009de53a367e95/core-1.3.1/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4cd1bb9126edead521009de53a367e95/core-1.3.1/AndroidManifest.xml:24:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:24:5-30:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:24:5-30:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/241683a4ab23dfac39cbbdac674781a3/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/241683a4ab23dfac39cbbdac674781a3/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4cd1bb9126edead521009de53a367e95/core-1.3.1/AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:13:9-35
+	android:label
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:11:9-41
+	android:roundIcon
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:12:9-54
+	android:icon
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:10:9-43
+	android:allowBackup
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:14:9-40
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:8:9-41
+activity#com.nineleaps.eazipoc.views.GroupsActivity
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:15:9-16:20
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:15:19-55
+activity#com.nineleaps.eazipoc.views.SplashActivity
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:17:9-23:20
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:17:19-55
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:18:9-22:25
+action#android.intent.action.MAIN
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:19:13-65
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:19:21-62
+category#android.intent.category.LAUNCHER
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:21:13-73
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:21:23-70
+activity#com.nineleaps.eazipoc.views.LoginActivity
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:24:9-57
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:24:19-54
+service#com.nineleaps.eazipoc.ConnectionService
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:25:9-54
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:25:18-51
+uses-sdk
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+MERGED from [androidx.multidex:multidex:2.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/ccbef321d279df26b618d55f2e525214/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/ccbef321d279df26b618d55f2e525214/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.material:material:1.3.0-alpha02] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/828bbde08e9468568f5acd90ef6cdee5/material-1.3.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.3.0-alpha02] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/828bbde08e9468568f5acd90ef6cdee5/material-1.3.0-alpha02/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-beta7] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/71d415918e7f5265c2c797eeba899a3e/constraintlayout-2.0.0-beta7/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-beta7] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/71d415918e7f5265c2c797eeba899a3e/constraintlayout-2.0.0-beta7/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/08830a9ee6c5ae94cafc61d7ace3c388/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/08830a9ee6c5ae94cafc61d7ace3c388/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/28a8c0af18f1b07d4114c9093a9e0570/core-ktx-1.3.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/28a8c0af18f1b07d4114c9093a9e0570/core-ktx-1.3.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6deceff4d6384f735aa3f681e6d18bd5/lifecycle-extensions-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6deceff4d6384f735aa3f681e6d18bd5/lifecycle-extensions-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/978de44f1b63e9ef86fb051642491ce3/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/978de44f1b63e9ef86fb051642491ce3/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/13aa94185569dd2c0f4fb2f3ea659e83/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/13aa94185569dd2c0f4fb2f3ea659e83/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/22794e241f7f2697c0adacb8214f040b/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/22794e241f7f2697c0adacb8214f040b/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/e649716e2cd9993b8693752c7f7aa2cd/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/e649716e2cd9993b8693752c7f7aa2cd/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/dbc05a101edbf8a98e911a29a2b5bcf1/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/dbc05a101edbf8a98e911a29a2b5bcf1/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2fb32b634e7c19305bc4fc42930c19f5/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2fb32b634e7c19305bc4fc42930c19f5/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/1cee61dd88b5d47d44b749aae0fcf1b5/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/1cee61dd88b5d47d44b749aae0fcf1b5/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/e88dc1b56917ffb39cb6e7365e3d9bd4/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/e88dc1b56917ffb39cb6e7365e3d9bd4/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/046e753bc0bde8c0ecf802c29a4da236/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/046e753bc0bde8c0ecf802c29a4da236/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2c49719a658780ed45d7752579636e80/fragment-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2c49719a658780ed45d7752579636e80/fragment-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/a817f267d191516a6283d083b40108cb/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/a817f267d191516a6283d083b40108cb/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/8bc3662159f4f30339f118ad98329d1b/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/8bc3662159f4f30339f118ad98329d1b/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4736c31fe3352088a40f66f271e125c8/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4736c31fe3352088a40f66f271e125c8/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7f61f2f5e0c9cb271767b788e912675e/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7f61f2f5e0c9cb271767b788e912675e/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7d31582a3bb96f16d8cd837979499948/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7d31582a3bb96f16d8cd837979499948/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/bac4df00095d1c1ad38259ffc2679278/activity-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/bac4df00095d1c1ad38259ffc2679278/activity-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4cd1bb9126edead521009de53a367e95/core-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4cd1bb9126edead521009de53a367e95/core-1.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/c1bb6ab4b55ab612adddc2d5ad0f0062/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/c1bb6ab4b55ab612adddc2d5ad0f0062/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/164088543227bd9319303ac61f3f4b83/lifecycle-service-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/164088543227bd9319303ac61f3f4b83/lifecycle-service-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/83aeb99542ba657804d16532a570f25d/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/83aeb99542ba657804d16532a570f25d/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/99e1a48f634bb5c344c2104d97276785/lifecycle-livedata-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/99e1a48f634bb5c344c2104d97276785/lifecycle-livedata-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/b65759833cb841765bb9c121c48fccff/lifecycle-viewmodel-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/b65759833cb841765bb9c121c48fccff/lifecycle-viewmodel-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/c30fdfbcfb35442d3e04868a1a50ca24/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/c30fdfbcfb35442d3e04868a1a50ca24/lifecycle-livedata-core-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2ea6e0016e4aaf927d3661390911529c/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/2ea6e0016e4aaf927d3661390911529c/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/0b0f35bfceba206c8e59bf74cf615c55/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/0b0f35bfceba206c8e59bf74cf615c55/savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7a8241574dcbada1d70fe8071fad0958/lifecycle-viewmodel-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/7a8241574dcbada1d70fe8071fad0958/lifecycle-viewmodel-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/241683a4ab23dfac39cbbdac674781a3/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/241683a4ab23dfac39cbbdac674781a3/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d91c2d967745332dfa641b1ba0811559/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d91c2d967745332dfa641b1ba0811559/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/f7028f387f7413f656716fb889edb6fb/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/f7028f387f7413f656716fb889edb6fb/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/ebf9b6a515af6f8a9e97d1db6f1fdd66/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/ebf9b6a515af6f8a9e97d1db6f1fdd66/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6c41bab13c982e79ef1c88320ffd7e08/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6c41bab13c982e79ef1c88320ffd7e08/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/a035e37f694f3d8bc96f74e96cc84c2c/annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/a035e37f694f3d8bc96f74e96cc84c2c/annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
+provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:25:9-29:43
+	android:authorities
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:27:13-69
+	android:multiprocess
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:29:13-40
+	android:exported
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/d7c842faa7955cac82d6c8c7d9b31c68/lifecycle-process-2.2.0/AndroidManifest.xml:26:13-79
