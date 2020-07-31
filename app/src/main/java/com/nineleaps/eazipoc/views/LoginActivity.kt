@@ -96,14 +96,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validateName(name: String): Boolean {
-        return ((name != "") && (name.matches(Regex("^[a-zA-Z]*$"))));
+        return ((name != "") && (name.matches(Regex("^[a-zA-Z]*$"))))
     }
 
     private fun validatePhoneNumber(phoneNumber: String): Boolean {
         if (!Pattern.matches("[a-zA-Z]+", phoneNumber)) {
-            return phoneNumber.length == 10;
+            return phoneNumber.length == 10
         }
-        return false;
+        return false
     }
 
     override fun onResume() {

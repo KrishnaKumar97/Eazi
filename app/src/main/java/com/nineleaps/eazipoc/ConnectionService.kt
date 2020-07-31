@@ -37,15 +37,7 @@ class ConnectionService : Service() {
         Log.d(TAG, "onCreate()");
     }
 
-    fun getState(): ConnectionState {
-        return sConnectionState ?: ConnectionState.DISCONNECTED
-    }
-
-    fun getLoggedInState(): LoggedInState {
-        return sLoggedInState ?: LoggedInState.LOGGED_OUT
-    }
-
-    fun start() {
+    private fun start() {
         Log.d(TAG, " Service Start() function called.")
         if (!mActive) {
             mActive = true
@@ -54,7 +46,6 @@ class ConnectionService : Service() {
                     Looper.prepare()
                     mTHandler = Handler()
                     initConnection()
-                    //THE CODE HERE RUNS IN A BACKGROUND THREAD.
                     Looper.loop()
                 })
                 mThread!!.start()
@@ -102,7 +93,6 @@ class ConnectionService : Service() {
         mTHandler?.post {
             if (mConnection != null)
                 mConnection?.disconnect()
-            //CODE HERE IS MEANT TO SHUT DOWN OUR CONNECTION TO THE SERVER.
         }
 
     }

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
 MERGED from [androidx.multidex:multidex:2.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/ccbef321d279df26b618d55f2e525214/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.material:material:1.3.0-alpha02] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/828bbde08e9468568f5acd90ef6cdee5/material-1.3.0-alpha02/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-beta7] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/71d415918e7f5265c2c797eeba899a3e/constraintlayout-2.0.0-beta7/AndroidManifest.xml:2:1-11:12
@@ -43,20 +43,20 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] /home/nineleaps/.gradle/c
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/ebf9b6a515af6f8a9e97d1db6f1fdd66/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/6c41bab13c982e79ef1c88320ffd7e08/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/a035e37f694f3d8bc96f74e96cc84c2c/annotation-experimental-1.0.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
-INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
+INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
 	package
 		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:3:5-36
 		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
 		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
 		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-28:12
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:1-33:12
 		INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:2:11-69
@@ -64,8 +64,16 @@ uses-permission#android.permission.INTERNET
 ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:5:5-67
 	android:name
 		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:6:5-71
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:6:22-69
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:7:5-72
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:7:22-70
 application
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:7:5-26:19
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:9:5-31:19
 MERGED from [com.google.android.material:material:1.3.0-alpha02] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/828bbde08e9468568f5acd90ef6cdee5/material-1.3.0-alpha02/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.3.0-alpha02] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/828bbde08e9468568f5acd90ef6cdee5/material-1.3.0-alpha02/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-beta7] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/71d415918e7f5265c2c797eeba899a3e/constraintlayout-2.0.0-beta7/AndroidManifest.xml:9:5-20
@@ -81,45 +89,57 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/ninel
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.3.1] /home/nineleaps/.gradle/caches/transforms-2/files-2.1/4cd1bb9126edead521009de53a367e95/core-1.3.1/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:13:9-35
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:15:9-35
 	android:label
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:11:9-41
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:13:9-41
 	android:roundIcon
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:12:9-54
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:14:9-54
 	android:icon
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:10:9-43
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:12:9-43
 	android:allowBackup
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:9:9-35
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:11:9-35
 	android:theme
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:14:9-40
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:16:9-40
 	android:name
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:8:9-41
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:10:9-41
+activity#com.nineleaps.eazipoc.views.ListOfContactsActivity
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:17:9-75
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:17:19-63
+activity#com.nineleaps.eazipoc.views.GroupDetailsActivity
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:18:9-64
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:18:19-61
 activity#com.nineleaps.eazipoc.views.GroupsActivity
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:15:9-16:20
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:19:9-58
 	android:name
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:15:19-55
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:19:19-55
 activity#com.nineleaps.eazipoc.views.SplashActivity
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:17:9-23:20
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:20:9-26:20
 	android:name
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:17:19-55
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:20:19-55
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:18:9-22:25
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:21:13-25:29
 action#android.intent.action.MAIN
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:19:13-65
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:22:17-69
 	android:name
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:19:21-62
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:22:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:21:13-73
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:24:17-77
 	android:name
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:21:23-70
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:24:27-74
 activity#com.nineleaps.eazipoc.views.LoginActivity
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:24:9-57
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:27:9-57
 	android:name
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:24:19-54
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:27:19-54
 service#com.nineleaps.eazipoc.ConnectionService
-ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:25:9-54
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:29:9-54
 	android:name
-		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:25:18-51
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:29:18-51
+service#com.nineleaps.eazipoc.UserService
+ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:30:9-48
+	android:name
+		ADDED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml:30:18-45
 uses-sdk
 INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/nineleaps/AndroidStudioProjects/EaziPOC/app/src/main/AndroidManifest.xml

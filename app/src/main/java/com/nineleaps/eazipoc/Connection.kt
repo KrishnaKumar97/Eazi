@@ -13,14 +13,10 @@ import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.parts.Localpart
 import java.io.IOException
 import java.net.InetAddress
-import org.jivesoftware.smack.roster.RosterEntry
-import org.jivesoftware.smack.roster.RosterGroup
-
-
 
 
 class Connection(context: Context) : ConnectionListener {
-    private val TAG = "RoosterConnection"
+    private val TAG = "Connection"
 
     private var mApplicationContext: Context? = null
     private var mPhoneNumber: String? = null
@@ -38,7 +34,7 @@ class Connection(context: Context) : ConnectionListener {
     }
 
     init {
-        Log.d(TAG, "RoosterConnection Constructor called.")
+        Log.d(TAG, "Connection Constructor called.")
         mApplicationContext = context.applicationContext
         val sharedPreferences: SharedPreferences =
             context.getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
@@ -59,11 +55,11 @@ class Connection(context: Context) : ConnectionListener {
             .setHostAddress(addr)
             .setPort(5222)
             .build()
-        mConnection = XMPPTCPConnection(config)
+        ApplicationClass.connection = XMPPTCPConnection(config)
+        mConnection = ApplicationClass.connection
         try {
             mConnection?.addConnectionListener(this)
             mConnection?.connect()
-
             if (mConnection?.isConnected!!) {
                 if (!isLoggedIn!!) {
                     val accountManager = AccountManager.getInstance(mConnection)

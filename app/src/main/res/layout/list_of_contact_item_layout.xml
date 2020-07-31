@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F3F3FF"
+        app:contentPaddingRight="5dp"
+        app:contentPaddingLeft="10dp"
+        app:contentPaddingTop="10dp"
+        app:contentPaddingBottom="10dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/contact_name"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="15dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="40dp"
+                android:background="#999" />
+
+            <CheckBox
+                android:id="@+id/checkbox_select"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <View
+        android:layout_below="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#999" />
+</RelativeLayout>
