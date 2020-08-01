@@ -46,7 +46,7 @@ class GroupDetailsActivity : AppCompatActivity() {
             else{
                 val intent = Intent(this,ListOfContactsActivity::class.java)
                 intent.putExtra("group_name",groupName.text.toString())
-                startActivity(Intent(this, ListOfContactsActivity::class.java))
+                startActivity(intent)
             }
         }
     }

@@ -7,16 +7,11 @@ import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 import com.nineleaps.eazipoc.Connection.ConnectionState
-import com.nineleaps.eazipoc.Connection.LoggedInState
-import org.jivesoftware.smack.SmackException
-import org.jivesoftware.smack.XMPPException
-import java.io.IOException
 
 
 class ConnectionService : Service() {
     companion object {
         var sConnectionState: ConnectionState? = null
-        var sLoggedInState: LoggedInState? = null
         const val UI_AUTHENTICATED = "UI Authenticated"
     }
 
@@ -61,30 +56,10 @@ class ConnectionService : Service() {
         try {
             mConnection?.connect()
 
-        } catch (e: IOException) {
-            Log.d(
-                TAG,
-                "Something went wrong while connecting ,make sure the credentials are right and try again"
-            )
-            e.printStackTrace()
-            //Stop the service all together.
-            stopSelf()
-        } catch (e: SmackException) {
-            Log.d(
-                TAG,
-                "Something went wrong while connecting ,make sure the credentials are right and try again"
-            )
-            e.printStackTrace()
-            stopSelf()
-        } catch (e: XMPPException) {
-            Log.d(
-                TAG,
-                "Something went wrong while connecting ,make sure the credentials are right and try again"
-            )
+        } catch (e: Exception) {
             e.printStackTrace()
             stopSelf()
         }
-
     }
 
     private fun stop() {

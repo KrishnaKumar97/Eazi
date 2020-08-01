@@ -44,7 +44,6 @@ class UserService : Service() {
                 Looper.prepare()
                 mTHandler = Handler()
                 fetchUsers()
-                //THE CODE HERE RUNS IN A BACKGROUND THREAD.
                 Looper.loop()
             })
             mThread!!.start()

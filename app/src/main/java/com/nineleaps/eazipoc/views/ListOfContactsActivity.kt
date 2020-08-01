@@ -6,10 +6,13 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -18,12 +21,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.nineleaps.Utils
+import com.nineleaps.eazipoc.ApplicationClass
 import com.nineleaps.eazipoc.R
 import com.nineleaps.eazipoc.UserService
 import com.nineleaps.eazipoc.adapters.UserListAdapter
 import com.nineleaps.eazipoc.models.UserModel
 import com.nineleaps.eazipoc.repositories.UserRepository
 import com.nineleaps.eazipoc.viewmodels.UserViewModel
+import org.jivesoftware.smackx.muc.MultiUserChatManager
+import org.jxmpp.jid.impl.JidCreate
+import org.jxmpp.jid.parts.Resourcepart
 
 class ListOfContactsActivity : AppCompatActivity() {
     private var userBroadcastReceiver: UserBroadcastReceiver? = null
@@ -38,7 +45,9 @@ class ListOfContactsActivity : AppCompatActivity() {
     private val selectedNumberList = ArrayList<String>()
     private lateinit var noUsersAvailable: ImageView
 
-
+    private var mThread: Thread? = null
+    private var mTHandler: Handler? = null
+    private var groupName: String? = null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,15 +56,29 @@ class ListOfContactsActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
         initViews()
         initViewModel()
+        val bundle = intent.extras
+        groupName = bundle?.getString("group_name")
+
         observeData()
         userBroadcastReceiver = UserBroadcastReceiver()
+        initClickListener()
     }
 
 
     private fun initViews() {
-        submitButton = findViewById(R.id.submit_button)
+        submitButton = findViewById(R.id.submit_group_button)
         noUsersAvailable = findViewById(R.id.empty_state_image_view)
         recyclerViewForUserList = findViewById(R.id.recyclerView)
+    }
+
+    private fun initClickListener() {
+        submitButton.setOnClickListener {
+            if (groupName != null) {
+                addGroup(groupName!!, selectedNumberList)
+                Toast.makeText(this, "Group Created Successfully", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, GroupsActivity::class.java))
+            }
+        }
     }
 
 
@@ -76,6 +99,35 @@ class ListOfContactsActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun addGroup(groupName: String, listOfJIDs: ArrayList<String>) {
+        if (mThread == null || !mThread!!.isAlive) {
+            mThread = Thread(Runnable {
+                Looper.prepare()
+                mTHandler = Handler()
+                addGroupInBackground(groupName, listOfJIDs)
+                Looper.loop()
+            })
+            mThread!!.start()
+        }
+    }
+
+
+    private fun addGroupInBackground(groupName: String, listOfJIDs: ArrayList<String>) {
+        MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
+
+        val multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
+        val jid = JidCreate.entityBareFrom(groupName + "@conference.localhost")
+        val muc = multiUserChatManager.getMultiUserChat(jid)
+        muc.create(Resourcepart.from("Krishna")).makeInstant()
+        for (item in listOfJIDs) {
+            muc.invite(
+                JidCreate.entityBareFrom("$item@localhost"),
+                "Meet me in this excellent room"
+            );
+        }
+    }
+
 
     private fun compareNumbers(jidList: ArrayList<String>) {
 
@@ -134,15 +186,16 @@ class ListOfContactsActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         recyclerViewForUserList.layoutManager = layoutManager
         userListAdapter =
-            UserListAdapter(userModelList, finalNumberList, object : UserListAdapter.CheckBoxClickListener {
-                override fun onClick(numberList: ArrayList<String>) {
-                    selectedNumberList.clear()
-                    selectedNumberList.addAll(numberList)
-                    Log.d("CheckBoxChangeFinal", selectedNumberList.toString())
+            UserListAdapter(
+                userModelList,
+                finalNumberList,
+                object : UserListAdapter.CheckBoxClickListener {
+                    override fun onClick(numberList: ArrayList<String>) {
+                        selectedNumberList.clear()
+                        selectedNumberList.addAll(numberList)
+                    }
 
-                }
-
-            })
+                })
         recyclerViewForUserList.adapter = userListAdapter
     }
 }

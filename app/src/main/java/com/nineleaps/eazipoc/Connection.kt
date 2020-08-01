@@ -5,10 +5,15 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
 import org.jivesoftware.smack.*
+import org.jivesoftware.smack.packet.Message
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
 import org.jivesoftware.smackx.iqregister.AccountManager
+import org.jivesoftware.smackx.muc.InvitationListener
+import org.jivesoftware.smackx.muc.MultiUserChat
+import org.jivesoftware.smackx.muc.packet.MUCUser
 import org.jxmpp.jid.DomainBareJid
+import org.jxmpp.jid.EntityJid
 import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.parts.Localpart
 import java.io.IOException
@@ -26,11 +31,7 @@ class Connection(context: Context) : ConnectionListener {
     private var mConnection: XMPPTCPConnection? = null
 
     enum class ConnectionState {
-        CONNECTED, AUTHENTICATED, CONNECTING, DISCONNECTING, DISCONNECTED
-    }
-
-    enum class LoggedInState {
-        LOGGED_IN, LOGGED_OUT
+        CONNECTED, AUTHENTICATED, DISCONNECTED
     }
 
     init {
@@ -39,7 +40,7 @@ class Connection(context: Context) : ConnectionListener {
         val sharedPreferences: SharedPreferences =
             context.getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
         mPhoneNumber = sharedPreferences.getString("xmpp_jid", null)
-        name = sharedPreferences.getString("xmpp_name",null)
+        name = sharedPreferences.getString("xmpp_name", null)
         isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
     }
 
@@ -64,14 +65,14 @@ class Connection(context: Context) : ConnectionListener {
                 if (!isLoggedIn!!) {
                     val accountManager = AccountManager.getInstance(mConnection)
                     accountManager.sensitiveOperationOverInsecureConnection(true)
-                    if (mPhoneNumber!=null && name!=null){
-                        val hashMap= HashMap<String,String>()
+                    if (mPhoneNumber != null && name != null) {
+                        val hashMap = HashMap<String, String>()
                         hashMap["username"] = mPhoneNumber!!
                         hashMap["password"] = "pass"
                         hashMap["name"] = name!!
                         SASLAuthentication.unBlacklistSASLMechanism("PLAIN")
                         SASLAuthentication.blacklistSASLMechanism("DIGEST-MD5")
-                        accountManager.createAccount(Localpart.from(mPhoneNumber), "pass",hashMap)
+                        accountManager.createAccount(Localpart.from(mPhoneNumber), "pass", hashMap)
                     }
                 }
                 mConnection?.login(mPhoneNumber, "pass")
