@@ -123,19 +123,28 @@ class ListOfContactsActivity : AppCompatActivity() {
 
 
     private fun addGroupInBackground(groupName: String, listOfJIDs: ArrayList<String>) {
-        MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
 
-        val multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
-        val jid =
-            JidCreate.entityBareFrom(groupName + "@conference.ip-172-31-14-161.us-east-2.compute.internal")
-        val muc = multiUserChatManager.getMultiUserChat(jid)
-        muc.create(Resourcepart.from(ApplicationClass.connection.user.split("@")[0])).makeInstant()
-        for (item in listOfJIDs) {
-            muc.invite(
-                JidCreate.entityBareFrom("$item@ip-172-31-14-161.us-east-2.compute.internal"),
-                "Meet me in this excellent room"
-            );
+        try {
+            MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
+
+            val multiUserChatManager =
+                MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
+            val jid =
+                JidCreate.entityBareFrom(groupName + "@conference.ip-172-31-14-161.us-east-2.compute.internal")
+            val muc = multiUserChatManager.getMultiUserChat(jid)
+            muc.create(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
+                .makeInstant()
+            for (item in listOfJIDs) {
+                muc.invite(
+                    JidCreate.entityBareFrom("$item@ip-172-31-14-161.us-east-2.compute.internal"),
+                    "Meet me in this excellent room"
+                );
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
+
+
     }
 
 
@@ -190,6 +199,7 @@ class ListOfContactsActivity : AppCompatActivity() {
         super.onStop()
         userBroadcastReceiver?.getUsers()?.let { UserRepository.instance().removeDataSource(it) }
         unregisterReceiver(userBroadcastReceiver)
+        finish()
     }
 
     private fun initRecyclerView() {

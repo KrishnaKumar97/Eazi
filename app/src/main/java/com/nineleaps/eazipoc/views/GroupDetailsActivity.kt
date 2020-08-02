@@ -80,4 +80,9 @@ class GroupDetailsActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onStop() {
+        super.onStop()
+        finish()
+    }
 }
