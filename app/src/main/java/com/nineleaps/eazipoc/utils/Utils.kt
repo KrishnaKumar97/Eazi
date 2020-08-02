@@ -1,4 +1,4 @@
-package com.nineleaps
+package com.nineleaps.eazipoc.utils
 
 import android.app.Activity
 import android.view.WindowManager

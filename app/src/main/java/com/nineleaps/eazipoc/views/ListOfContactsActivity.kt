@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.ContactsContract
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -20,10 +19,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
-import com.nineleaps.Utils
+import com.nineleaps.eazipoc.utils.Utils
 import com.nineleaps.eazipoc.ApplicationClass
 import com.nineleaps.eazipoc.R
-import com.nineleaps.eazipoc.UserService
+import com.nineleaps.eazipoc.broadcastreceivers.UserBroadcastReceiver
+import com.nineleaps.eazipoc.services.UserService
 import com.nineleaps.eazipoc.adapters.UserListAdapter
 import com.nineleaps.eazipoc.models.UserModel
 import com.nineleaps.eazipoc.repositories.UserRepository
@@ -119,7 +119,7 @@ class ListOfContactsActivity : AppCompatActivity() {
         val multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
         val jid = JidCreate.entityBareFrom(groupName + "@conference.localhost")
         val muc = multiUserChatManager.getMultiUserChat(jid)
-        muc.create(Resourcepart.from("Krishna")).makeInstant()
+        muc.create(Resourcepart.from(ApplicationClass.connection.user.split("@")[0])).makeInstant()
         for (item in listOfJIDs) {
             muc.invite(
                 JidCreate.entityBareFrom("$item@localhost"),

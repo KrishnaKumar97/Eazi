@@ -8,7 +8,6 @@ import com.nineleaps.eazipoc.repositories.UserRepository
 
 class UserViewModel : ViewModel() {
     fun getData(): LiveData<ArrayList<UserModel>>? {
-        // for simplicity return data directly to view
         return UserRepository.instance().data
     }
 }

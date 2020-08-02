@@ -1,4 +1,4 @@
-package com.nineleaps.eazipoc
+package com.nineleaps.eazipoc.services
 
 import android.app.Service
 import android.content.Intent
@@ -6,7 +6,8 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
-import com.nineleaps.eazipoc.Connection.ConnectionState
+import com.nineleaps.eazipoc.utils.Connection
+import com.nineleaps.eazipoc.utils.Connection.ConnectionState
 
 
 class ConnectionService : Service() {

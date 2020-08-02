@@ -1,19 +1,15 @@
 package com.nineleaps.eazipoc.views
 
-import android.Manifest
 import android.content.*
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.nineleaps.Utils
-import com.nineleaps.eazipoc.ConnectionService
+import com.nineleaps.eazipoc.utils.Utils
+import com.nineleaps.eazipoc.services.ConnectionService
 import com.nineleaps.eazipoc.R
 
 class SplashActivity : AppCompatActivity() {

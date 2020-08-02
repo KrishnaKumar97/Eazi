@@ -1,17 +1,16 @@
-package com.nineleaps.eazipoc.views
+package com.nineleaps.eazipoc.broadcastreceivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.nineleaps.eazipoc.UserService
+import com.nineleaps.eazipoc.services.UserService
 import com.nineleaps.eazipoc.models.UserModel
 
 class UserBroadcastReceiver : BroadcastReceiver() {
 
-    var userLiveData: MutableLiveData<ArrayList<UserModel>> = MutableLiveData()
+    private var userLiveData: MutableLiveData<ArrayList<UserModel>> = MutableLiveData()
 
     fun getUsers(): LiveData<ArrayList<UserModel>> {
         return userLiveData

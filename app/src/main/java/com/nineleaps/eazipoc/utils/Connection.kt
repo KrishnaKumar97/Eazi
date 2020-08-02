@@ -1,19 +1,16 @@
-package com.nineleaps.eazipoc
+package com.nineleaps.eazipoc.utils
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
+import com.nineleaps.eazipoc.ApplicationClass
+import com.nineleaps.eazipoc.services.ConnectionService
 import org.jivesoftware.smack.*
-import org.jivesoftware.smack.packet.Message
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
 import org.jivesoftware.smackx.iqregister.AccountManager
-import org.jivesoftware.smackx.muc.InvitationListener
-import org.jivesoftware.smackx.muc.MultiUserChat
-import org.jivesoftware.smackx.muc.packet.MUCUser
 import org.jxmpp.jid.DomainBareJid
-import org.jxmpp.jid.EntityJid
 import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.parts.Localpart
 import java.io.IOException
@@ -53,6 +50,7 @@ class Connection(context: Context) : ConnectionListener {
             .setHost("nineleaps")
             .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
             .setXmppDomain(mServiceName)
+            .setSendPresence(true)
             .setHostAddress(addr)
             .setPort(5222)
             .build()
@@ -98,7 +96,8 @@ class Connection(context: Context) : ConnectionListener {
             }
 
         } catch (e: SmackException.NotConnectedException) {
-            ConnectionService.sConnectionState = ConnectionState.DISCONNECTED
+            ConnectionService.sConnectionState =
+                ConnectionState.DISCONNECTED
             e.printStackTrace()
         }
         mConnection = null
@@ -106,22 +105,26 @@ class Connection(context: Context) : ConnectionListener {
     }
 
     override fun connected(connection: XMPPConnection?) {
-        ConnectionService.sConnectionState = ConnectionState.CONNECTED
+        ConnectionService.sConnectionState =
+            ConnectionState.CONNECTED
         Log.d(TAG, "Connected Successfully")
     }
 
     override fun connectionClosed() {
-        ConnectionService.sConnectionState = ConnectionState.DISCONNECTED
+        ConnectionService.sConnectionState =
+            ConnectionState.DISCONNECTED
         Log.d(TAG, "Connectionclosed()")
     }
 
     override fun connectionClosedOnError(e: Exception?) {
-        ConnectionService.sConnectionState = ConnectionState.DISCONNECTED
+        ConnectionService.sConnectionState =
+            ConnectionState.DISCONNECTED
         Log.d(TAG, "ConnectionClosedOnError, error " + e.toString())
     }
 
     override fun authenticated(connection: XMPPConnection?, resumed: Boolean) {
-        ConnectionService.sConnectionState = ConnectionState.AUTHENTICATED
+        ConnectionService.sConnectionState =
+            ConnectionState.AUTHENTICATED
         Log.d(TAG, "Authenticated Successfully")
         showContactListActivityWhenAuthenticated()
     }

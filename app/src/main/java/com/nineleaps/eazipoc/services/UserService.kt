@@ -1,4 +1,4 @@
-package com.nineleaps.eazipoc
+package com.nineleaps.eazipoc.services
 
 import android.app.Service
 import android.content.Intent
@@ -8,15 +8,12 @@ import android.os.Looper
 import android.util.Log
 import org.jivesoftware.smackx.search.UserSearch
 import org.jivesoftware.smackx.search.UserSearchManager
-import androidx.core.content.ContextCompat.getSystemService
 import org.jivesoftware.smack.SmackException
 import org.jivesoftware.smack.XMPPException
-import androidx.core.content.ContextCompat.getSystemService
 import com.nineleaps.eazipoc.models.UserModel
 import org.jivesoftware.smackx.xdata.Form
 import org.jxmpp.jid.impl.JidCreate
-import android.os.Bundle
-import androidx.core.content.ContextCompat.getSystemService
+import com.nineleaps.eazipoc.ApplicationClass
 
 
 class UserService : Service() {

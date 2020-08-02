@@ -8,8 +8,8 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.nineleaps.Utils
-import com.nineleaps.eazipoc.ConnectionService
+import com.nineleaps.eazipoc.utils.Utils
+import com.nineleaps.eazipoc.services.ConnectionService
 import com.nineleaps.eazipoc.R
 import java.util.regex.Pattern
 
