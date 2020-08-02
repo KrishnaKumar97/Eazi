@@ -8,8 +8,8 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.nineleaps.Utils
-import com.nineleaps.eazipoc.ConnectionService
+import com.nineleaps.eazipoc.utils.Utils
+import com.nineleaps.eazipoc.services.ConnectionService
 import com.nineleaps.eazipoc.R
 import java.util.regex.Pattern
 
@@ -96,14 +96,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validateName(name: String): Boolean {
-        return ((name != "") && (name.matches(Regex("^[a-zA-Z]*$"))));
+        return ((name != "") && (name.matches(Regex("^[a-zA-Z]*$"))))
     }
 
     private fun validatePhoneNumber(phoneNumber: String): Boolean {
         if (!Pattern.matches("[a-zA-Z]+", phoneNumber)) {
-            return phoneNumber.length == 10;
+            return phoneNumber.length == 10
         }
-        return false;
+        return false
     }
 
     override fun onResume() {

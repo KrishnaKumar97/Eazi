@@ -1587,6 +1587,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable eazilogo
+drawable empty_state
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -1595,6 +1596,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_user
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
 drawable material_ic_edit_black_24dp
@@ -1715,13 +1717,16 @@ id blocking
 id bottom
 id bounce
 id buttonPanel
+id button_layout
 id cancel_button
+id card_view
 id center
 id center_horizontal
 id center_vertical
 id chain
 id chains
 id checkbox
+id checkbox_select
 id checked
 id chip
 id chip1
@@ -1736,11 +1741,13 @@ id clip_horizontal
 id clip_vertical
 id collapseActionView
 id confirm_button
+id contact_name
 id container
 id content
 id contentPanel
 id coordinator
 id cos
+id create_group_button
 id custom
 id customPanel
 id cut
@@ -1772,6 +1779,7 @@ id easeIn
 id easeInOut
 id easeOut
 id edit_query
+id empty_state_image_view
 id end
 id enterAlways
 id enterAlwaysCollapsed
@@ -1797,6 +1805,8 @@ id gone
 id graph
 id graph_wrap
 id group_divider
+id group_name_edit_text
+id group_name_text_input_layout
 id groups
 id guideline
 id header_title
@@ -1813,6 +1823,7 @@ id image
 id incoming
 id info
 id invisible
+id invite_friends_button
 id italic
 id item_touch_helper_previous_elevation
 id jumpToEnd
@@ -1910,12 +1921,14 @@ id phone_number_text_input_layout
 id pin
 id position
 id postLayout
+id profile_pic
 id progress_bar
 id progress_circular
 id progress_horizontal
 id radio
 id ratio
 id rectangles
+id recyclerView
 id relative
 id reverseSawtooth
 id right
@@ -2096,7 +2109,9 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_group_details
 layout activity_groups
+layout activity_list_of_contacts
 layout activity_login
 layout activity_splash
 layout custom_dialog
@@ -2115,6 +2130,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout list_of_contact_item_layout
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
