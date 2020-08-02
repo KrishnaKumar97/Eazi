@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.nineleaps.eazipoc.models.MessageList
+import com.nineleaps.eazipoc.models.MessageModel
 
 
 class MessageListAdapter(
-    private val mContext: Context,
-    private val mMessageList: ArrayList<MessageList>
+    private val mMessageList: ArrayList<MessageModel>
 ) : RecyclerView.Adapter<MessageListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
