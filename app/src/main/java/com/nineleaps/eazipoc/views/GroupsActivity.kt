@@ -75,7 +75,6 @@ class GroupsActivity : AppCompatActivity(), GroupListAdapter.CellClickListener {
     override fun onStop() {
         super.onStop()
         stopAllServices()
-        finish()
     }
 
     private fun initViews() {
