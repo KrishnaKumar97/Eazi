@@ -116,6 +116,7 @@ class LoginActivity : AppCompatActivity() {
                         val editor = sharedPreferences?.edit()
                         editor?.putBoolean("isLoggedIn", true)?.apply()
                         startActivity(Intent(this@LoginActivity, GroupsActivity::class.java))
+                        finish()
                     }
                 }
             }

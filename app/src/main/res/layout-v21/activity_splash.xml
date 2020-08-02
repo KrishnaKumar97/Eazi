@@ -19,6 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:elevation="5dp"
+        android:outlineSpotShadowColor="@color/black"
         android:padding="16dp"
         android:src="@drawable/eazilogo" />
 </RelativeLayout>

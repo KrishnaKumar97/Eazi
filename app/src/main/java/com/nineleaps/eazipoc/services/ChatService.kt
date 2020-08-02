@@ -46,7 +46,7 @@ class ChatService : Service(), MessageListener {
             val multiUserChatManager =
                 MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
             val muc =
-                multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.localhost"))
+                multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal"))
             muc.addMessageListener(this)
         } catch (e: Exception) {
             println(e.stackTrace)
@@ -60,7 +60,6 @@ class ChatService : Service(), MessageListener {
             intentReceived = intent
         }
         groupId = intent?.extras?.getString("GROUP_ID_SERVICE")
-        Log.d(TAG,groupId)
         start()
         return START_STICKY
     }

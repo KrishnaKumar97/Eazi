@@ -8,14 +8,14 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#F3F3FF"
-        app:contentPaddingRight="5dp"
-        app:contentPaddingLeft="10dp"
-        app:contentPaddingTop="10dp"
-        app:contentPaddingBottom="10dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/color_purple"
         app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
+        app:contentPaddingBottom="10dp"
+        app:contentPaddingLeft="10dp"
+        app:contentPaddingRight="5dp"
+        app:contentPaddingTop="10dp"
         card_view:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -31,7 +31,8 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:textSize="15dp" />
+                android:textColor="@color/color_white"
+                android:textSize="15sp" />
 
             <View
                 android:layout_width="1dp"
@@ -42,12 +43,15 @@
                 android:id="@+id/checkbox_select"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2" />
+                android:layout_weight="0.2"
+                android:buttonTint="@color/white"
+                android:textColor="#ffffff" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <View
-        android:layout_below="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@+id/card_view"
         android:background="#999" />
 </RelativeLayout>

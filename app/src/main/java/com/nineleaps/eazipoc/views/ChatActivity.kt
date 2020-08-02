@@ -37,10 +37,10 @@ class ChatActivity : AppCompatActivity() {
                 val multiUserChatManager =
                     MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
                 val muc =
-                    multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.localhost"))
+                    multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal"))
 //                Log.d("JIDDDDD", muc.toString()+"  "+ muc.isJoined)
 //                muc.sendMessage("Hi all")
-                val msg = Message(JidCreate.from("$groupId@conference.localhost"), Message.Type.groupchat);
+                val msg = Message(JidCreate.from("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal"), Message.Type.groupchat);
                 msg.body = "message"
                 muc.join(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
                 muc.sendMessage(msg)
@@ -82,7 +82,7 @@ class ChatActivity : AppCompatActivity() {
             val multiUserChatManager =
                 MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
             val muc =
-                multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("poloo@conference.localhost"))
+                multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("poloo@conference.ip-172-31-14-161.us-east-2.compute.internal"))
             muc.join(Resourcepart.from("Krishnaaaa"))
             muc.sendMessage("HIII")
             Log.d("ChatMessgae","SENT")
