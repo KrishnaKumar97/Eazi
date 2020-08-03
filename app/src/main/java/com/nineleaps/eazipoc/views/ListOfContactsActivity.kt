@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,7 @@ import android.os.Looper
 import android.provider.ContactsContract
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -44,15 +46,17 @@ class ListOfContactsActivity : AppCompatActivity() {
     private lateinit var submitButton: MaterialButton
     private val selectedNumberList = ArrayList<String>()
     private lateinit var noUsersAvailable: ImageView
+    private lateinit var refreshContacts: MaterialButton
 
     private var mThread: Thread? = null
     private var mTHandler: Handler? = null
     private var groupName: String? = null
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_of_contacts)
         Utils.displayFullScreen(this)
+        setContentView(R.layout.activity_list_of_contacts)
         sharedPreferences = getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
         initViews()
         initViewModel()
@@ -69,6 +73,7 @@ class ListOfContactsActivity : AppCompatActivity() {
         submitButton = findViewById(R.id.submit_group_button)
         noUsersAvailable = findViewById(R.id.empty_state_image_view)
         recyclerViewForUserList = findViewById(R.id.recyclerView)
+        refreshContacts = findViewById(R.id.refresh_contacts_button)
     }
 
     private fun initClickListener() {
@@ -78,6 +83,10 @@ class ListOfContactsActivity : AppCompatActivity() {
                 Toast.makeText(this, "Group Created Successfully", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, GroupsActivity::class.java))
             }
+        }
+
+        refreshContacts.setOnClickListener {
+            observeData()
         }
     }
 
@@ -114,18 +123,28 @@ class ListOfContactsActivity : AppCompatActivity() {
 
 
     private fun addGroupInBackground(groupName: String, listOfJIDs: ArrayList<String>) {
-        MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
 
-        val multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
-        val jid = JidCreate.entityBareFrom(groupName + "@conference.localhost")
-        val muc = multiUserChatManager.getMultiUserChat(jid)
-        muc.create(Resourcepart.from(ApplicationClass.connection.user.split("@")[0])).makeInstant()
-        for (item in listOfJIDs) {
-            muc.invite(
-                JidCreate.entityBareFrom("$item@localhost"),
-                "Meet me in this excellent room"
-            );
+        try {
+            MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
+
+            val multiUserChatManager =
+                MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
+            val jid =
+                JidCreate.entityBareFrom(groupName + "@conference.ip-172-31-14-161.us-east-2.compute.internal")
+            val muc = multiUserChatManager.getMultiUserChat(jid)
+            muc.create(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
+                .makeInstant()
+            for (item in listOfJIDs) {
+                muc.invite(
+                    JidCreate.entityBareFrom("$item@ip-172-31-14-161.us-east-2.compute.internal"),
+                    "Meet me in this excellent room"
+                );
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
+
+
     }
 
 
@@ -180,6 +199,7 @@ class ListOfContactsActivity : AppCompatActivity() {
         super.onStop()
         userBroadcastReceiver?.getUsers()?.let { UserRepository.instance().removeDataSource(it) }
         unregisterReceiver(userBroadcastReceiver)
+        finish()
     }
 
     private fun initRecyclerView() {

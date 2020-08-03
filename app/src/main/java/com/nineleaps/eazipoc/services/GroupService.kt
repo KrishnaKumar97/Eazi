@@ -52,14 +52,14 @@ class GroupService : Service(), InvitationListener {
     }
 
     private fun fetchGroups() {
-        Log.d(TAG,"FetchGroupscalled")
+        Log.d(TAG, "FetchGroupscalled")
         val groupList = ArrayList<GroupModel>()
         try {
             val multiUserChatManager =
                 MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
             multiUserChatManager.addInvitationListener(this)
             val rooms =
-                multiUserChatManager.getHostedRooms(JidCreate.domainBareFrom("@conference.localhost"))
+                multiUserChatManager.getHostedRooms(JidCreate.domainBareFrom("@conference.ip-172-31-14-161.us-east-2.compute.internal"))
             for (room in rooms) {
                 val group = GroupModel()
                 group.groupName = room.jid.localpart.toString()
@@ -100,7 +100,7 @@ class GroupService : Service(), InvitationListener {
         if (room != null) {
             ApplicationClass.groupMuc = room
         }
-        Log.d("JID", room.toString()+"  "+room?.isJoined)
+        Log.d("JID", room.toString() + "  " + room?.isJoined)
 
     }
 }

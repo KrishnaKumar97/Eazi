@@ -1,6 +1,7 @@
 package com.nineleaps.eazipoc.views
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -24,6 +25,8 @@ import org.jxmpp.jid.parts.Resourcepart
 class ChatActivity : AppCompatActivity(), MessageListener {
     private lateinit var sendButton: Button
     private lateinit var editText: EditText
+    private var mThread: Thread? = null
+    private var mTHandler: Handler? = null
     lateinit var groupId: String
     private lateinit var multiUserChatManager: MultiUserChatManager
     private lateinit var mucEnterConfiguration: MucEnterConfiguration
@@ -87,7 +90,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
 
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
-        recyclerViewForMessageList.layoutManager = layoutManager
+        recyclerViewForMessageList.layoutManager = layoutManager as RecyclerView.LayoutManager?
         messageListAdapter =
             MessageListAdapter(
                 messageList

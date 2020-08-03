@@ -13,15 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Groups"
-        android:textSize="36sp" />
-
-    <ImageView
-        android:id="@+id/empty_state_image_view"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/empty_state"
-        android:visibility="gone" />
+        android:textSize="25sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGroup"
@@ -30,6 +22,14 @@
         android:layout_above="@+id/button_layout"
         android:layout_below="@+id/title"
         android:layout_margin="16dp" />
+
+    <ImageView
+        android:id="@+id/empty_state_image_view"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/empty_state"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,9 +41,18 @@
             android:id="@+id/create_group_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
             android:backgroundTint="#EFA13C"
             android:text="Create New Group"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/refresh_group_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:backgroundTint="#EFA13C"
+            android:text="Refresh Group"
             android:textAllCaps="false" />
     </RelativeLayout>
 

@@ -35,9 +35,8 @@ class SplashActivity : AppCompatActivity() {
         } else {
             Handler().postDelayed({
                 startActivity(Intent(this, LoginActivity::class.java))
-            }, 3000)
+            }, 2000)
         }
-
     }
 
     override fun onResume() {
@@ -48,6 +47,7 @@ class SplashActivity : AppCompatActivity() {
                     ConnectionService.UI_AUTHENTICATED -> {
                         mProgressBar.visibility = View.GONE
                         startActivity(Intent(this@SplashActivity, GroupsActivity::class.java))
+                        finish()
                     }
                 }
             }
