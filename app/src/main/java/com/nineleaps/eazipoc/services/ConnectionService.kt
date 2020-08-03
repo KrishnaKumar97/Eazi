@@ -56,6 +56,7 @@ class ConnectionService : Service() {
         }
         try {
             mConnection?.connect()
+
         } catch (e: Exception) {
             e.printStackTrace()
             stopSelf()
