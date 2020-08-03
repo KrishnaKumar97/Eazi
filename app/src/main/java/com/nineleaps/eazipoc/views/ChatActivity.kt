@@ -56,7 +56,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
         sendButton.setOnClickListener {
             try {
                 val msg = Message(
-                    JidCreate.from("$groupId@conference.localhost"),
+                    JidCreate.from("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal"),
                     Message.Type.groupchat
                 )
                 if (editText.text.isNotEmpty()) {
@@ -77,7 +77,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     private fun initMuc() {
         multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
         muc =
-            multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.localhost"))
+            multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal"))
         mucEnterConfiguration = muc.getEnterConfigurationBuilder(
             Resourcepart.from(ApplicationClass.connection.user.split("@")[0])
         )!!
