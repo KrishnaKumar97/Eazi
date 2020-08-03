@@ -1,6 +1,7 @@
 package com.nineleaps.eazipoc.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ class MessageListAdapter(
 ) : RecyclerView.Adapter<MessageListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
+        Log.d("AdapterMessage", mMessageList.size.toString())
         return mMessageList.size
     }
 
@@ -32,6 +34,6 @@ class MessageListAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val messageSender: TextView =
             itemView.findViewById(com.nineleaps.eazipoc.R.id.text_message_name)
-        val message: TextView = itemView.findViewById(com.nineleaps.eazipoc.R.id.text_message_name)
+        val message: TextView = itemView.findViewById(com.nineleaps.eazipoc.R.id.text_message_body)
     }
 }

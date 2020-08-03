@@ -89,7 +89,7 @@ class Connection(context: Context) : ConnectionListener {
     }
 
     fun disconnect() {
-        Log.d(TAG, "Disconnecting from serser $mServiceName")
+        Log.d(TAG, "Disconnecting from server $mServiceName")
         try {
             if (mConnection != null) {
                 mConnection?.disconnect()
