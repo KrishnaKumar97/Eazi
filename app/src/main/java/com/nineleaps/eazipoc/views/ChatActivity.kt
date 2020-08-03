@@ -38,7 +38,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-//        Utils.displayFullScreen(this)
+        Utils.displayFullScreen(this)
         val intent = intent
         groupId = intent.getStringExtra("GROUP_ID")
         initViews()
@@ -110,7 +110,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     }
 
     override fun processMessage(message: Message?) {
-        if (message?.from.toString().contains("/")){
+        if (message?.from.toString().contains("/")) {
             messageList.add(MessageModel(message?.from.toString().split("/")[1], message?.body))
             runOnUiThread {
                 messageListAdapter?.notifyDataSetChanged()
