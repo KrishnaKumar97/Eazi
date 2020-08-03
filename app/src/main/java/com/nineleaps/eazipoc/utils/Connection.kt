@@ -43,11 +43,11 @@ class Connection(context: Context) : ConnectionListener {
 
     @Throws(IOException::class, XMPPException::class, SmackException::class)
     fun connect() {
-        mServiceName = JidCreate.domainBareFrom("localhost")
+        mServiceName = JidCreate.domainBareFrom("ip-172-31-14-161.us-east-2.compute.internal")
         Log.d(TAG, "Connecting to server $mServiceName")
-        val addr = InetAddress.getByName("192.168.0.109")
+        val addr = InetAddress.getByName("52.14.229.27")
         val config = XMPPTCPConnectionConfiguration.builder()
-            .setHost("nineleaps")
+            .setHost("ip-172-31-14-161.us-east-2.compute.internal")
             .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
             .setXmppDomain(mServiceName)
             .setSendPresence(true)
@@ -89,7 +89,7 @@ class Connection(context: Context) : ConnectionListener {
     }
 
     fun disconnect() {
-        Log.d(TAG, "Disconnecting from serser $mServiceName")
+        Log.d(TAG, "Disconnecting from server $mServiceName")
         try {
             if (mConnection != null) {
                 mConnection?.disconnect()

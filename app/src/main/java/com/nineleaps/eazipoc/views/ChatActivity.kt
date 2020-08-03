@@ -1,97 +1,118 @@
 package com.nineleaps.eazipoc.views
 
-import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nineleaps.eazipoc.ApplicationClass
-import com.nineleaps.eazipoc.services.ChatService
 import com.nineleaps.eazipoc.R
+import com.nineleaps.eazipoc.adapters.MessageListAdapter
+import com.nineleaps.eazipoc.models.MessageModel
+import org.jivesoftware.smack.MessageListener
 import org.jivesoftware.smack.SmackException
 import org.jivesoftware.smack.XMPPException
 import org.jivesoftware.smack.packet.Message
+import org.jivesoftware.smackx.muc.MucEnterConfiguration
+import org.jivesoftware.smackx.muc.MultiUserChat
 import org.jivesoftware.smackx.muc.MultiUserChatManager
 import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.parts.Resourcepart
 
-class ChatActivity : AppCompatActivity() {
-
+class ChatActivity : AppCompatActivity(), MessageListener {
     private lateinit var sendButton: Button
+    private lateinit var editText: EditText
     private var mThread: Thread? = null
     private var mTHandler: Handler? = null
     lateinit var groupId: String
-    private var sharedPreferences: SharedPreferences? = null
+    private lateinit var multiUserChatManager: MultiUserChatManager
+    private lateinit var mucEnterConfiguration: MucEnterConfiguration
+    private lateinit var muc: MultiUserChat
+    private val messageList = ArrayList<MessageModel>()
+    private lateinit var recyclerViewForMessageList: RecyclerView
+    private var messageListAdapter: MessageListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-        sendButton = findViewById(R.id.button_chatbox_send)
         val intent = intent
         groupId = intent.getStringExtra("GROUP_ID")
+        initViews()
+        initClickListeners()
+        initMuc()
+        initRecyclerView()
+    }
+
+    private fun initViews() {
+        sendButton = findViewById(R.id.button_chatbox_send)
+        recyclerViewForMessageList = findViewById(R.id.recyclerViewChat)
+        editText = findViewById(R.id.edittext_chatbox)
+    }
+
+    private fun initClickListeners() {
         sendButton.setOnClickListener {
             try {
-                val multiUserChatManager =
-                    MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
-                val muc =
-                    multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.localhost"))
-//                Log.d("JIDDDDD", muc.toString()+"  "+ muc.isJoined)
-//                muc.sendMessage("Hi all")
-                val msg = Message(JidCreate.from("$groupId@conference.localhost"), Message.Type.groupchat);
-                msg.body = "message"
-                muc.join(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
-                muc.sendMessage(msg)
-
-//                val gson = Gson();
-//                val json = sharedPreferences?.getString("muc", "");
-//                val obj = gson.fromJson(json, MultiUserChat::class.java)
-//                obj.sendMessage("HEllo")
+                val msg = Message(
+                    JidCreate.from("$groupId@conference.localhost"),
+                    Message.Type.groupchat
+                )
+                if (editText.text.isNotEmpty()) {
+                    msg.body = editText.text.toString()
+                    muc.sendMessage(msg)
+                    editText.text.clear()
+                }
             } catch (e: SmackException.NotConnectedException) {
                 println(e.stackTrace)
             } catch (e: InterruptedException) {
                 println(e.stackTrace)
-            }catch (e:XMPPException){
+            } catch (e: XMPPException) {
                 println(e.stackTrace)
             }
         }
     }
+
+    private fun initMuc() {
+        multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
+        muc =
+            multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.localhost"))
+        mucEnterConfiguration = muc.getEnterConfigurationBuilder(
+            Resourcepart.from(ApplicationClass.connection.user.split("@")[0])
+        )!!
+            .requestNoHistory()
+            .build()
+        if (!muc.isJoined)
+            muc.join(mucEnterConfiguration)
+        muc.addMessageListener(this)
+    }
+
+    private fun initRecyclerView() {
+        val layoutManager = LinearLayoutManager(this)
+        recyclerViewForMessageList.layoutManager = layoutManager as RecyclerView.LayoutManager?
+        messageListAdapter =
+            MessageListAdapter(
+                messageList
+            )
+        recyclerViewForMessageList.adapter = messageListAdapter
+    }
+
     override fun onStart() {
         super.onStart()
-        val intent = Intent(this, ChatService::class.java)
-        intent.putExtra("GROUP_ID_SERVICE", groupId)
-        startService(intent)
+        messageList.clear()
     }
 
-    private fun sendMessage(groupId: String) {
-        if (mThread == null || !mThread!!.isAlive) {
-            mThread = Thread(Runnable {
-                Looper.prepare()
-                mTHandler = Handler()
-                sendMessageInBackground(groupId)
-                Looper.loop()
-            })
-            mThread!!.start()
-        }
+    override fun onStop() {
+        super.onStop()
+        muc.removeMessageListener(this)
     }
 
-    private fun sendMessageInBackground(groupId: String) {
-        try {
-            val multiUserChatManager =
-                MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
-            val muc =
-                multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("poloo@conference.localhost"))
-            muc.join(Resourcepart.from("Krishnaaaa"))
-            muc.sendMessage("HIII")
-            Log.d("ChatMessgae","SENT")
-        } catch (e: SmackException.NotConnectedException) {
-            println(e.stackTrace)
-        } catch (e: InterruptedException) {
-            println(e.stackTrace)
-        }catch (e:XMPPException){
-            println(e.stackTrace)
+    override fun processMessage(message: Message?) {
+        messageList.add(MessageModel(message?.from.toString(), message?.body))
+        Log.d("ChatActivity", messageList.toString())
+        runOnUiThread {
+            messageListAdapter?.notifyDataSetChanged()
         }
     }
 

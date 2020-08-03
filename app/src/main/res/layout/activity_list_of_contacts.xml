@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Invite Friends"
-        android:textSize="36sp" />
+        android:text="Invite friends"
+        android:textSize="25sp" />
 
     <ImageView
         android:id="@+id/empty_state_image_view"
@@ -41,9 +41,18 @@
             android:id="@+id/submit_group_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
             android:backgroundTint="#EFA13C"
             android:text="Submit"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/refresh_contacts_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:backgroundTint="#EFA13C"
+            android:text="Refresh Contacts"
             android:textAllCaps="false" />
     </RelativeLayout>
 </RelativeLayout>

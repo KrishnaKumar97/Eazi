@@ -8,8 +8,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#F3F3FF"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/color_purple"
         app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
         app:contentPaddingBottom="10dp"
@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Sample"
-                android:textSize="24sp" />
+                android:textColor="@color/white"
+                android:textSize="15sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

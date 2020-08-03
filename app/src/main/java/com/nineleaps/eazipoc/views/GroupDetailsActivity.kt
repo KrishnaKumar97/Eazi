@@ -21,6 +21,7 @@ class GroupDetailsActivity : AppCompatActivity() {
     private lateinit var inviteFriendsButton: MaterialButton
     private lateinit var groupName: TextInputEditText
     var focusView: View? = null
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,6 @@ class GroupDetailsActivity : AppCompatActivity() {
     private fun initViews() {
         inviteFriendsButton = findViewById(R.id.invite_friends_button)
         groupName = findViewById(R.id.group_name_edit_text)
-
     }
 
     private fun initClickListener() {
@@ -42,10 +42,12 @@ class GroupDetailsActivity : AppCompatActivity() {
             if (TextUtils.isEmpty(groupName.text.toString()) || groupName.text.toString() == " ") {
                 groupName.error = "Group Name cannot be empty"
                 groupName.requestFocus()
-            }
-            else{
-                val intent = Intent(this,ListOfContactsActivity::class.java)
-                intent.putExtra("group_name",groupName.text.toString())
+            } else if (groupName.text.toString().contains(" ")) {
+                groupName.error = "Group Name cannot contain space"
+                groupName.requestFocus()
+            } else {
+                val intent = Intent(this, ListOfContactsActivity::class.java)
+                intent.putExtra("group_name", groupName.text.toString())
                 startActivity(intent)
             }
         }
@@ -77,5 +79,10 @@ class GroupDetailsActivity : AppCompatActivity() {
                 return
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        finish()
     }
 }
