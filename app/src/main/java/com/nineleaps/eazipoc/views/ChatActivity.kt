@@ -5,6 +5,7 @@ import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.nineleaps.eazipoc.ApplicationClass
 import com.nineleaps.eazipoc.R
 import com.nineleaps.eazipoc.adapters.MessageListAdapter
 import com.nineleaps.eazipoc.models.MessageModel
+import com.nineleaps.eazipoc.utils.Utils
 import org.jivesoftware.smack.MessageListener
 import org.jivesoftware.smack.SmackException
 import org.jivesoftware.smack.XMPPException
@@ -25,8 +27,6 @@ import org.jxmpp.jid.parts.Resourcepart
 class ChatActivity : AppCompatActivity(), MessageListener {
     private lateinit var sendButton: Button
     private lateinit var editText: EditText
-    private var mThread: Thread? = null
-    private var mTHandler: Handler? = null
     lateinit var groupId: String
     private lateinit var multiUserChatManager: MultiUserChatManager
     private lateinit var mucEnterConfiguration: MucEnterConfiguration
@@ -38,6 +38,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+//        Utils.displayFullScreen(this)
         val intent = intent
         groupId = intent.getStringExtra("GROUP_ID")
         initViews()
@@ -56,7 +57,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
         sendButton.setOnClickListener {
             try {
                 val msg = Message(
-                    JidCreate.from("$groupId@conference.localhost"),
+                    JidCreate.from("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal"),
                     Message.Type.groupchat
                 )
                 if (editText.text.isNotEmpty()) {
@@ -77,7 +78,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     private fun initMuc() {
         multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
         muc =
-            multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.localhost"))
+            multiUserChatManager.getMultiUserChat(JidCreate.entityBareFrom("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal"))
         mucEnterConfiguration = muc.getEnterConfigurationBuilder(
             Resourcepart.from(ApplicationClass.connection.user.split("@")[0])
         )!!
@@ -109,10 +110,11 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     }
 
     override fun processMessage(message: Message?) {
-        messageList.add(MessageModel(message?.from.toString(), message?.body))
-        Log.d("ChatActivity", messageList.toString())
-        runOnUiThread {
-            messageListAdapter?.notifyDataSetChanged()
+        if (message?.from.toString().contains("/")){
+            messageList.add(MessageModel(message?.from.toString().split("/")[1], message?.body))
+            runOnUiThread {
+                messageListAdapter?.notifyDataSetChanged()
+            }
         }
     }
 

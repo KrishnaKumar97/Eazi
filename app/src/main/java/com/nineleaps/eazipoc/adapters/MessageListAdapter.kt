@@ -15,7 +15,6 @@ class MessageListAdapter(
 ) : RecyclerView.Adapter<MessageListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
-        Log.d("AdapterMessage", mMessageList.size.toString())
         return mMessageList.size
     }
 
@@ -23,7 +22,7 @@ class MessageListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(com.nineleaps.eazipoc.R.layout.message_received, parent, false)
-        return MessageListAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

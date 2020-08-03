@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
+import android.widget.Toast
 import com.nineleaps.eazipoc.ApplicationClass
 import com.nineleaps.eazipoc.services.ConnectionService
 import org.jivesoftware.smack.*
@@ -13,8 +14,10 @@ import org.jivesoftware.smackx.iqregister.AccountManager
 import org.jxmpp.jid.DomainBareJid
 import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.parts.Localpart
+import org.jxmpp.stringprep.XmppStringprepException
 import java.io.IOException
 import java.net.InetAddress
+import java.net.UnknownHostException
 
 
 class Connection(context: Context) : ConnectionListener {
@@ -43,40 +46,56 @@ class Connection(context: Context) : ConnectionListener {
 
     @Throws(IOException::class, XMPPException::class, SmackException::class)
     fun connect() {
-        mServiceName = JidCreate.domainBareFrom("ip-172-31-14-161.us-east-2.compute.internal")
-        Log.d(TAG, "Connecting to server $mServiceName")
-        val addr = InetAddress.getByName("52.14.229.27")
-        val config = XMPPTCPConnectionConfiguration.builder()
-            .setHost("ip-172-31-14-161.us-east-2.compute.internal")
-            .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
-            .setXmppDomain(mServiceName)
-            .setSendPresence(true)
-            .setHostAddress(addr)
-            .setPort(5222)
-            .build()
-        ApplicationClass.connection = XMPPTCPConnection(config)
-        mConnection = ApplicationClass.connection
         try {
-            mConnection?.addConnectionListener(this)
-            mConnection?.connect()
-            if (mConnection?.isConnected!!) {
-                if (!isLoggedIn!!) {
-                    val accountManager = AccountManager.getInstance(mConnection)
-                    accountManager.sensitiveOperationOverInsecureConnection(true)
-                    if (mPhoneNumber != null && name != null) {
-                        val hashMap = HashMap<String, String>()
-                        hashMap["username"] = mPhoneNumber!!
-                        hashMap["password"] = "pass"
-                        hashMap["name"] = name!!
-                        SASLAuthentication.unBlacklistSASLMechanism("PLAIN")
-                        SASLAuthentication.blacklistSASLMechanism("DIGEST-MD5")
-                        accountManager.createAccount(Localpart.from(mPhoneNumber), "pass", hashMap)
+            mServiceName = JidCreate.domainBareFrom("ip-172-31-14-161.us-east-2.compute.internal")
+            Log.d(TAG, "Connecting to server $mServiceName")
+            val addr = InetAddress.getByName("52.14.229.27")
+            val config = XMPPTCPConnectionConfiguration.builder()
+                .setHost("ip-172-31-14-161.us-east-2.compute.internal")
+                .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
+                .setXmppDomain(mServiceName)
+                .setSendPresence(true)
+                .setHostAddress(addr)
+                .setPort(5222)
+                .build()
+            ApplicationClass.connection = XMPPTCPConnection(config)
+            mConnection = ApplicationClass.connection
+            try {
+                mConnection?.addConnectionListener(this)
+                mConnection?.connect()
+                if (mConnection?.isConnected!!) {
+                    if (!isLoggedIn!!) {
+                        val accountManager = AccountManager.getInstance(mConnection)
+                        accountManager.sensitiveOperationOverInsecureConnection(true)
+                        if (mPhoneNumber != null && name != null) {
+                            val hashMap = HashMap<String, String>()
+                            hashMap["username"] = mPhoneNumber!!
+                            hashMap["password"] = "pass"
+                            hashMap["name"] = name!!
+                            SASLAuthentication.unBlacklistSASLMechanism("PLAIN")
+                            SASLAuthentication.blacklistSASLMechanism("DIGEST-MD5")
+                            accountManager.createAccount(
+                                Localpart.from(mPhoneNumber),
+                                "pass",
+                                hashMap
+                            )
+                        }
                     }
+                    mConnection?.login(mPhoneNumber, "pass")
                 }
-                mConnection?.login(mPhoneNumber, "pass")
+            } catch (e: SmackException) {
+                Toast.makeText(mApplicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: IOException) {
+                Toast.makeText(mApplicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: XMPPException) {
+                Toast.makeText(mApplicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: InterruptedException) {
+                Toast.makeText(mApplicationContext, e.message, Toast.LENGTH_SHORT).show()
             }
-        } catch (e: Exception) {
-            Log.d("ApplicationKrishna", e.toString())
+        } catch (e: XmppStringprepException) {
+            Toast.makeText(mApplicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: UnknownHostException) {
+            Toast.makeText(mApplicationContext, e.message, Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -94,11 +113,10 @@ class Connection(context: Context) : ConnectionListener {
             if (mConnection != null) {
                 mConnection?.disconnect()
             }
-
         } catch (e: SmackException.NotConnectedException) {
             ConnectionService.sConnectionState =
                 ConnectionState.DISCONNECTED
-            e.printStackTrace()
+            Toast.makeText(mApplicationContext, e.message, Toast.LENGTH_SHORT).show()
         }
         mConnection = null
 
