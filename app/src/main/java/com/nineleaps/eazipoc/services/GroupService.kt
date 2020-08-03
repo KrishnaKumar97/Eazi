@@ -6,12 +6,16 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import com.nineleaps.eazipoc.ApplicationClass
 import com.nineleaps.eazipoc.models.GroupModel
+import org.jivesoftware.smack.SmackException
 import org.jivesoftware.smack.XMPPConnection
+import org.jivesoftware.smack.XMPPException
 import org.jivesoftware.smack.packet.Message
 import org.jivesoftware.smackx.muc.InvitationListener
 import org.jivesoftware.smackx.muc.MultiUserChat
+import org.jivesoftware.smackx.muc.MultiUserChatException
 import org.jivesoftware.smackx.muc.MultiUserChatManager
 import org.jivesoftware.smackx.muc.packet.MUCUser
 import org.jxmpp.jid.EntityJid
@@ -58,13 +62,26 @@ class GroupService : Service(), InvitationListener {
             val multiUserChatManager =
                 MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
             multiUserChatManager.addInvitationListener(this)
-            val rooms =
-                multiUserChatManager.getHostedRooms(JidCreate.domainBareFrom("@conference.ip-172-31-14-161.us-east-2.compute.internal"))
-            for (room in rooms) {
-                val group = GroupModel()
-                group.groupName = room.jid.localpart.toString()
-                groupList.add(group)
+            try {
+                val rooms =
+                    multiUserChatManager.getHostedRooms(JidCreate.domainBareFrom("@conference.ip-172-31-14-161.us-east-2.compute.internal"))
+                for (room in rooms) {
+                    val group = GroupModel()
+                    group.groupName = room.jid.localpart.toString()
+                    groupList.add(group)
+                }
+            } catch (e: SmackException.NoResponseException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: XMPPException.XMPPErrorException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: SmackException.NotConnectedException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: InterruptedException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: MultiUserChatException.NotAMucServiceException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
             }
+
             val i = Intent(GROUP_FETCH)
             i.setPackage(applicationContext.packageName)
             i.putParcelableArrayListExtra("fetched_groups", groupList)
@@ -96,11 +113,18 @@ class GroupService : Service(), InvitationListener {
         invitation: MUCUser.Invite?
     ) {
         Log.d(TAG, "Invitation Received")
-        room?.join(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
-        if (room != null) {
-            ApplicationClass.groupMuc = room
+        try {
+            room?.join(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
+        } catch (e: SmackException.NoResponseException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: XMPPException.XMPPErrorException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: SmackException.NotConnectedException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: InterruptedException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: MultiUserChatException.NotAMucServiceException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
         }
-        Log.d("JID", room.toString() + "  " + room?.isJoined)
-
     }
 }

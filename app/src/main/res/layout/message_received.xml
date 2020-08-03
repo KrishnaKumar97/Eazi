@@ -8,18 +8,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textColor="#000"
         android:text="John Doe"
-        android:textSize="12sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/text_message_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginRight="8dp"
         android:layout_below="@+id/text_message_name"
         android:maxWidth="240dp"
         android:padding="8dp"
+        android:textSize="16sp"
         android:text="hello, hello!"
         android:textColor="#999" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/text_message_body"
+        android:background="#CCC" />
 </RelativeLayout>

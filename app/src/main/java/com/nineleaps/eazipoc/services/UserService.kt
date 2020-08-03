@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import org.jivesoftware.smackx.search.UserSearch
 import org.jivesoftware.smackx.search.UserSearchManager
 import org.jivesoftware.smack.SmackException
@@ -14,6 +15,7 @@ import com.nineleaps.eazipoc.models.UserModel
 import org.jivesoftware.smackx.xdata.Form
 import org.jxmpp.jid.impl.JidCreate
 import com.nineleaps.eazipoc.ApplicationClass
+import org.jivesoftware.smackx.muc.MultiUserChatException
 
 
 class UserService : Service() {
@@ -54,9 +56,7 @@ class UserService : Service() {
             var searchForm: Form? = null
             val userList = ArrayList<UserModel>()
             searchForm = manager.getSearchForm(JidCreate.domainBareFrom(searchFormString))
-
             val answerForm = searchForm!!.createAnswerForm()
-
             val userSearch = UserSearch()
             answerForm.setAnswer("Username", true)
             answerForm.setAnswer("search", "*")
@@ -88,6 +88,8 @@ class UserService : Service() {
             e.printStackTrace()
         } catch (e: SmackException.NotConnectedException) {
             e.printStackTrace()
+        } catch (e: InterruptedException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
         }
 
     }

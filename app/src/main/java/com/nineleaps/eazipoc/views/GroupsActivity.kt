@@ -127,7 +127,6 @@ class GroupsActivity : AppCompatActivity(), GroupListAdapter.CellClickListener {
     }
 
     override fun onCellClickListener(groupData: GroupModel) {
-        Toast.makeText(this, "$groupData", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, ChatActivity::class.java)
         intent.putExtra("GROUP_ID", groupData.groupName)
         startActivity(intent)

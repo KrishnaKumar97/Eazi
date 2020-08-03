@@ -7,6 +7,5 @@ import org.jivesoftware.smackx.muc.MultiUserChat
 class ApplicationClass : Application() {
     companion object {
         lateinit var connection: XMPPTCPConnection
-        lateinit var groupMuc: MultiUserChat
     }
 }
