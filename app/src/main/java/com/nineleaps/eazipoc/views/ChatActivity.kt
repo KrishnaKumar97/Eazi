@@ -8,6 +8,7 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -19,6 +20,7 @@ import com.nineleaps.eazipoc.R
 import com.nineleaps.eazipoc.adapters.MessageListAdapter
 import com.nineleaps.eazipoc.models.MessageDatabaseModel
 import com.nineleaps.eazipoc.models.MessageModel
+import com.nineleaps.eazipoc.utils.Utils
 import com.nineleaps.eazipoc.viewmodels.MessageHistoryViewModel
 import org.jivesoftware.smack.MessageListener
 import org.jivesoftware.smack.SmackException
@@ -38,6 +40,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     private lateinit var sendButton: Button
     private lateinit var editText: EditText
     private lateinit var groupId: String
+    private lateinit var heading: TextView
     private lateinit var messageHistoryViewModel: MessageHistoryViewModel
     private lateinit var multiUserChatManager: MultiUserChatManager
     private lateinit var mucEnterConfiguration: MucEnterConfiguration
@@ -93,6 +96,8 @@ class ChatActivity : AppCompatActivity(), MessageListener {
         sendButton = findViewById(R.id.button_chatbox_send)
         recyclerViewForMessageList = findViewById(R.id.recyclerViewChat)
         editText = findViewById(R.id.edittext_chatbox)
+        heading = findViewById(R.id.group_heading)
+        heading.text = groupId
     }
 
     private fun initClickListeners() {
@@ -136,6 +141,8 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         recyclerViewForMessageList.layoutManager = layoutManager as RecyclerView.LayoutManager?
+        layoutManager.stackFromEnd = true;
+
         messageListAdapter =
             MessageListAdapter(
                 messageList
