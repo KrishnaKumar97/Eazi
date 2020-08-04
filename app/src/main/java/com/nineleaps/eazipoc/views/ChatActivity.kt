@@ -27,6 +27,7 @@ import org.jivesoftware.smack.packet.Message
 import org.jivesoftware.smackx.mam.MamManager
 import org.jivesoftware.smackx.muc.MucEnterConfiguration
 import org.jivesoftware.smackx.muc.MultiUserChat
+import org.jivesoftware.smackx.muc.MultiUserChatException
 import org.jivesoftware.smackx.muc.MultiUserChatManager
 import org.jxmpp.jid.EntityBareJid
 import org.jxmpp.jid.EntityJid
@@ -51,6 +52,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+//        Utils.displayFullScreen(this)
         val intent = intent
         groupId = intent.getStringExtra("GROUP_ID")
         initViews()
@@ -177,31 +179,42 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     }
 
     private fun fetchMAM() {
-        val listOfMessages = ArrayList<MessageDatabaseModel>()
-        val mamQueryArgs = MamManager.MamQueryArgs.builder()
-            .queryLastPage()
-            .build()
+        try {
+            val listOfMessages = ArrayList<MessageDatabaseModel>()
+            val mamQueryArgs = MamManager.MamQueryArgs.builder()
+                .queryLastPage()
+                .build()
 
-        mamManager = MamManager.getInstanceFor(muc)
-        val mamQuery = mamManager.queryArchive(mamQueryArgs)
-        val mamQueryCount =
-            mamQuery.messageCount
-        Log.d("MAMQUERYCount", mamQueryCount.toString())
-        var i = 0
-        while (i < mamQueryCount) {
-            val mamQueryMessage =
-                mamQuery.mamResultExtensions[i].forwarded.forwardedStanza as Message
-            listOfMessages.add(
-                MessageDatabaseModel(
-                    groupName = groupId,
-                    userNickName = mamQueryMessage.from.toString().split("/")[1],
-                    messageBody = mamQueryMessage.body
+            mamManager = MamManager.getInstanceFor(muc)
+            val mamQuery = mamManager.queryArchive(mamQueryArgs)
+            val mamQueryCount =
+                mamQuery.messageCount
+            var i = 0
+            while (i < mamQueryCount) {
+                val mamQueryMessage =
+                    mamQuery.mamResultExtensions[i].forwarded.forwardedStanza as Message
+                listOfMessages.add(
+                    MessageDatabaseModel(
+                        groupName = groupId,
+                        userNickName = mamQueryMessage.from.toString().split("/")[1],
+                        messageBody = mamQueryMessage.body
+                    )
                 )
-            )
-            val message = mamQueryMessage.body
-            i += 1
+                i += 1
+            }
+            messageHistoryViewModel.storeMessageListInDB(groupId, listOfMessages)
+        }catch (e: SmackException.NoResponseException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: XMPPException.XMPPErrorException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: SmackException.NotConnectedException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: InterruptedException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        } catch (e: SmackException.NotLoggedInException) {
+            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
         }
-        messageHistoryViewModel.storeMessageListInDB(groupId, listOfMessages)
+
     }
 
     private fun isNetworkConnected(): Boolean {

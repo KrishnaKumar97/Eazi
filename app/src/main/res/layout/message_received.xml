@@ -1,34 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_chat_view"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/text_message_name"
+    <LinearLayout
+        android:id="@+id/ll_receiver_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:text="John Doe"
-        android:textSize="20sp" />
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/text_message_body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginRight="8dp"
-        android:layout_below="@+id/text_message_name"
-        android:maxWidth="240dp"
-        android:padding="8dp"
-        android:textSize="16sp"
-        android:text="hello, hello!"
-        android:textColor="#999" />
-    <View
+        <TextView
+            android:id="@+id/tv_receiver_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="John Doe"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_receiver_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_message_name"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/curved_chat"
+            android:maxWidth="240dp"
+            android:padding="8dp"
+            android:text="hello, hello!"
+            android:textColor="@color/color_white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sender_layout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/text_message_body"
-        android:background="#CCC" />
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_sender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="John Doe"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_sender_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_message_name"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/curved_chat_green"
+            android:maxWidth="240dp"
+            android:padding="8dp"
+            android:text="hello, hello!"
+            android:textColor="@color/color_white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
 </RelativeLayout>

@@ -1,12 +1,18 @@
 package com.nineleaps.eazipoc.adapters
 
-import android.content.Context
+import android.R.attr.button
+import android.R.attr.layout_gravity
+import android.util.LayoutDirection
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.nineleaps.eazipoc.ApplicationClass
 import com.nineleaps.eazipoc.models.MessageModel
 
 
@@ -26,13 +32,33 @@ class MessageListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.messageSender.text = mMessageList[position].name
-        holder.message.text = mMessageList[position].body
+        val name = mMessageList[position].name
+
+        if (name == ApplicationClass.connection.user.toString().split("@")[0]) {
+            holder.senderLayout.visibility = View.VISIBLE
+            holder.tvSenderName.text = mMessageList[position].name
+            holder.tvSenderMessage.text = mMessageList[position].body
+        } else {
+            holder.receiverLayout.visibility = View.VISIBLE
+            holder.tvReceiverName.text = mMessageList[position].name
+            holder.tvReceiverMessage.text = mMessageList[position].body
+        }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val messageSender: TextView =
-            itemView.findViewById(com.nineleaps.eazipoc.R.id.text_message_name)
-        val message: TextView = itemView.findViewById(com.nineleaps.eazipoc.R.id.text_message_body)
+        val tvSenderName: TextView =
+            itemView.findViewById(com.nineleaps.eazipoc.R.id.tv_sender_name)
+        val tvSenderMessage: TextView =
+            itemView.findViewById(com.nineleaps.eazipoc.R.id.tv_sender_message)
+
+        val tvReceiverName: TextView =
+            itemView.findViewById(com.nineleaps.eazipoc.R.id.tv_receiver_name)
+        val tvReceiverMessage: TextView =
+            itemView.findViewById(com.nineleaps.eazipoc.R.id.tv_receiver_message)
+
+        val senderLayout: LinearLayout =
+            itemView.findViewById(com.nineleaps.eazipoc.R.id.ll_sender_layout)
+        val receiverLayout: LinearLayout =
+            itemView.findViewById(com.nineleaps.eazipoc.R.id.ll_receiver_layout)
     }
 }
