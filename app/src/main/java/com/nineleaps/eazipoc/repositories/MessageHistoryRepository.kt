@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.nineleaps.eazipoc.ApplicationClass
 import com.nineleaps.eazipoc.models.MessageDatabaseModel
 
-class MessageHistoryRepository() {
-    private var messageHistoryListMutableLiveData = MutableLiveData<List<MessageDatabaseModel>>()
-
+class MessageHistoryRepository {
     fun storeDataInDB(messageDatabaseModel: MessageDatabaseModel) {
         ApplicationClass.messageHistoryDatabase.messageHistoryDAO.insertMessage(messageDatabaseModel)
     }

@@ -6,14 +6,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nineleaps.eazipoc.R
-import com.nineleaps.eazipoc.models.GroupModel
+import com.nineleaps.eazipoc.models.GroupDatabaseModel
 
+/**
+ * @param groupList List of groups
+ * @param cellClickListener Listener to handle onCLick event of a particular group
+ * adapter for groups activity
+ */
 class GroupListAdapter(
-    groupList: ArrayList<GroupModel>,
+    groupList: ArrayList<GroupDatabaseModel>,
     private val cellClickListener: CellClickListener
 ) :
     RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
-    private var groupModelList = ArrayList<GroupModel>()
+    private var groupModelList = ArrayList<GroupDatabaseModel>()
 
     init {
         groupModelList = groupList
@@ -31,6 +36,7 @@ class GroupListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.groupName.text = groupModelList[position].groupName
+
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener(groupModelList[position])
         }
@@ -41,7 +47,7 @@ class GroupListAdapter(
     }
 
     interface CellClickListener {
-        fun onCellClickListener(groupData: GroupModel)
+        fun onCellClickListener(groupData: GroupDatabaseModel)
     }
 }
 

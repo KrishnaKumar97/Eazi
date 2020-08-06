@@ -28,10 +28,13 @@ import com.nineleaps.eazipoc.R
 import com.nineleaps.eazipoc.broadcastreceivers.UserBroadcastReceiver
 import com.nineleaps.eazipoc.services.UserService
 import com.nineleaps.eazipoc.adapters.UserListAdapter
+import com.nineleaps.eazipoc.models.GroupDatabaseModel
 import com.nineleaps.eazipoc.models.UserModel
 import com.nineleaps.eazipoc.repositories.UserRepository
+import com.nineleaps.eazipoc.viewmodels.GroupViewModel
 import com.nineleaps.eazipoc.viewmodels.UserViewModel
 import org.jivesoftware.smackx.muc.MultiUserChatManager
+import org.jivesoftware.smackx.xdata.Form
 import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.parts.Resourcepart
 
@@ -41,6 +44,7 @@ class ListOfContactsActivity : AppCompatActivity() {
     private val userModelList = ArrayList<UserModel>()
     private val jidList = ArrayList<String>()
     private val finalNumberList = ArrayList<String>()
+    private lateinit var groupViewModel: GroupViewModel
     private var sharedPreferences: SharedPreferences? = null
     private var userListAdapter: UserListAdapter? = null
     private lateinit var recyclerViewForUserList: RecyclerView
@@ -95,6 +99,8 @@ class ListOfContactsActivity : AppCompatActivity() {
     private fun initViewModel() {
         userViewModel = ViewModelProviders.of(this)
             .get(UserViewModel::class.java)
+        groupViewModel = ViewModelProviders.of(this)
+            .get(GroupViewModel::class.java)
     }
 
     private fun observeData() {
@@ -134,7 +140,16 @@ class ListOfContactsActivity : AppCompatActivity() {
                 JidCreate.entityBareFrom(groupName + "@conference.ip-172-31-14-161.us-east-2.compute.internal")
             val muc = multiUserChatManager.getMultiUserChat(jid)
             muc.create(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
-                .makeInstant()
+            val form = muc.configurationForm
+            val answerForm = form.createAnswerForm()
+            answerForm.setAnswer("muc#roomconfig_persistentroom", true)
+            muc.sendConfigurationForm(answerForm)
+            groupViewModel.storeGroupInDB(
+                GroupDatabaseModel(
+                    groupName = groupName,
+                    userNickName = ApplicationClass.connection.user.split("@")[0]
+                )
+            )
             for (item in listOfJIDs) {
                 muc.invite(
                     JidCreate.entityBareFrom("$item@ip-172-31-14-161.us-east-2.compute.internal"),

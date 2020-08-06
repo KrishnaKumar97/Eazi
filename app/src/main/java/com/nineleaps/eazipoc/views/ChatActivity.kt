@@ -1,10 +1,13 @@
 package com.nineleaps.eazipoc.views
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Browser
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText

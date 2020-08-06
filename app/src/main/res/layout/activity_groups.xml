@@ -31,7 +31,17 @@
         android:src="@drawable/empty_state"
         android:visibility="gone" />
 
+    <ProgressBar
+        android:id="@+id/groups_progress_bar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/tv_loading"
+        android:layout_centerInParent="true"
+        android:elevation="2dp"
+        android:visibility="gone" />
+
     <RelativeLayout
+        android:id="@+id/button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -41,7 +51,7 @@
             android:id="@+id/create_group_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
             android:backgroundTint="#EFA13C"
             android:text="Create New Group"
             android:textAllCaps="false" />
@@ -53,7 +63,8 @@
             android:layout_alignParentLeft="true"
             android:backgroundTint="#EFA13C"
             android:text="Refresh Group"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:visibility="gone"/>
     </RelativeLayout>
 
 </RelativeLayout>

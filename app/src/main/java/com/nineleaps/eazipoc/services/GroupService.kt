@@ -8,7 +8,9 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import com.nineleaps.eazipoc.ApplicationClass
+import com.nineleaps.eazipoc.models.GroupDatabaseModel
 import com.nineleaps.eazipoc.models.GroupModel
+import com.nineleaps.eazipoc.viewmodels.GroupViewModel
 import org.jivesoftware.smack.SmackException
 import org.jivesoftware.smack.XMPPConnection
 import org.jivesoftware.smack.XMPPException
@@ -32,6 +34,7 @@ class GroupService : Service(), InvitationListener {
     private val TAG = "GroupService"
     private var mThread: Thread? = null
     private var mTHandler: Handler? = null
+    private var flag: Boolean = false
 
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -112,19 +115,29 @@ class GroupService : Service(), InvitationListener {
         message: Message?,
         invitation: MUCUser.Invite?
     ) {
-        Log.d(TAG, "Invitation Received")
-        try {
-            room?.join(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
-        } catch (e: SmackException.NoResponseException) {
-            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-        } catch (e: XMPPException.XMPPErrorException) {
-            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-        } catch (e: SmackException.NotConnectedException) {
-            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-        } catch (e: InterruptedException) {
-            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-        } catch (e: MultiUserChatException.NotAMucServiceException) {
-            Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+        flag = true
+        if (flag){
+            flag = false
+            try {
+                room?.join(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))
+                val viewModel = GroupViewModel()
+                viewModel.storeGroupInDB(
+                    GroupDatabaseModel(
+                        groupName = room.toString().split("@")[0].split(" ")[1],
+                        userNickName = ApplicationClass.connection.user.split("@")[0]
+                    )
+                )
+            } catch (e: SmackException.NoResponseException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: XMPPException.XMPPErrorException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: SmackException.NotConnectedException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: InterruptedException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            } catch (e: MultiUserChatException.NotAMucServiceException) {
+                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
