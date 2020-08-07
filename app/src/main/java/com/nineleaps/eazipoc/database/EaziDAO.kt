@@ -10,17 +10,17 @@ import com.nineleaps.eazipoc.models.MessageDatabaseModel
 import com.nineleaps.eazipoc.utils.TypeConverterObject
 
 @Dao
-interface MessageHistoryDAO {
+interface EaziDAO {
     @Insert
     @TypeConverters(TypeConverterObject::class)
-    fun insertListMessages(listOfMessages:List<MessageDatabaseModel>)
+    fun insertMessageList(listOfMessages:List<MessageDatabaseModel>)
 
     @Insert
     fun insertMessage(messageDatabaseModel: MessageDatabaseModel)
 
     @Query("SELECT * FROM MessageHistory WHERE groupName=:group_name")
     @TypeConverters(TypeConverterObject::class)
-    fun fetchAllMessage(group_name: String): LiveData<List<MessageDatabaseModel>>
+    fun fetchAllMessages(group_name: String): LiveData<List<MessageDatabaseModel>>
 
     @Query("DELETE FROM MessageHistory WHERE groupName=:group_name")
     fun deleteMessages(group_name: String)

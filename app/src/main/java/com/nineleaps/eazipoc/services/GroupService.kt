@@ -9,7 +9,6 @@ import android.util.Log
 import android.widget.Toast
 import com.nineleaps.eazipoc.ApplicationClass
 import com.nineleaps.eazipoc.models.GroupDatabaseModel
-import com.nineleaps.eazipoc.models.GroupModel
 import com.nineleaps.eazipoc.viewmodels.GroupViewModel
 import org.jivesoftware.smack.SmackException
 import org.jivesoftware.smack.XMPPConnection
@@ -21,16 +20,12 @@ import org.jivesoftware.smackx.muc.MultiUserChatException
 import org.jivesoftware.smackx.muc.MultiUserChatManager
 import org.jivesoftware.smackx.muc.packet.MUCUser
 import org.jxmpp.jid.EntityJid
-import org.jxmpp.jid.impl.JidCreate
 import org.jxmpp.jid.parts.Resourcepart
 
-
+/**
+ * Service which is responsible to listen for incoming group invites
+ */
 class GroupService : Service(), InvitationListener {
-
-    companion object {
-        const val GROUP_FETCH = "Group Fetch"
-    }
-
     private val TAG = "GroupService"
     private var mThread: Thread? = null
     private var mTHandler: Handler? = null
@@ -43,10 +38,13 @@ class GroupService : Service(), InvitationListener {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d(TAG, "onCreate()");
+        Log.d(TAG, "onCreate()")
     }
 
-    fun start() {
+    /**
+     * Function to invoke method which initializes the invitation listener in the background
+     */
+    private fun start() {
         if (mThread == null || !mThread!!.isAlive) {
             mThread = Thread(Runnable {
                 Looper.prepare()
@@ -58,37 +56,15 @@ class GroupService : Service(), InvitationListener {
         }
     }
 
+    /**
+     * Function initialized the Invitation Listener
+     */
     private fun fetchGroups() {
         Log.d(TAG, "FetchGroupscalled")
-        val groupList = ArrayList<GroupModel>()
         try {
             val multiUserChatManager =
                 MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
             multiUserChatManager.addInvitationListener(this)
-            try {
-                val rooms =
-                    multiUserChatManager.getHostedRooms(JidCreate.domainBareFrom("@conference.ip-172-31-14-161.us-east-2.compute.internal"))
-                for (room in rooms) {
-                    val group = GroupModel()
-                    group.groupName = room.jid.localpart.toString()
-                    groupList.add(group)
-                }
-            } catch (e: SmackException.NoResponseException) {
-                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-            } catch (e: XMPPException.XMPPErrorException) {
-                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-            } catch (e: SmackException.NotConnectedException) {
-                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-            } catch (e: InterruptedException) {
-                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-            } catch (e: MultiUserChatException.NotAMucServiceException) {
-                Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
-            }
-
-            val i = Intent(GROUP_FETCH)
-            i.setPackage(applicationContext.packageName)
-            i.putParcelableArrayListExtra("fetched_groups", groupList)
-            applicationContext.sendBroadcast(i)
         } catch (e: Exception) {
             println(e.stackTrace)
         }
@@ -106,6 +82,9 @@ class GroupService : Service(), InvitationListener {
         super.onDestroy()
     }
 
+    /**
+     * Method is invoked when an invite is received to join a Multi User Chat room
+     */
     override fun invitationReceived(
         conn: XMPPConnection?,
         room: MultiUserChat?,
@@ -116,7 +95,7 @@ class GroupService : Service(), InvitationListener {
         invitation: MUCUser.Invite?
     ) {
         flag = true
-        if (flag){
+        if (flag) {
             flag = false
             try {
                 room?.join(Resourcepart.from(ApplicationClass.connection.user.split("@")[0]))

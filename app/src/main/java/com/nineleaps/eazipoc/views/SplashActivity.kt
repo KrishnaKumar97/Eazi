@@ -1,16 +1,14 @@
 package com.nineleaps.eazipoc.views
 
 import android.content.*
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.ProgressBar
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.nineleaps.eazipoc.utils.Utils
-import com.nineleaps.eazipoc.services.ConnectionService
 import com.nineleaps.eazipoc.R
+import com.nineleaps.eazipoc.services.ConnectionService
+import com.nineleaps.eazipoc.utils.Utils
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var mProgressBar: ProgressBar
@@ -18,15 +16,30 @@ class SplashActivity : AppCompatActivity() {
     private var isLoggedIn: Boolean? = null
     private var mBroadcastReceiver: BroadcastReceiver? = null
 
-    @RequiresApi(Build.VERSION_CODES.M)
+    /**
+     * OnCreate overridden function
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        // calling function to make the activity display in full screen
         Utils.displayFullScreen(this)
         init()
         navigateActivity()
     }
 
+    /**
+     * function to initialize all the lateinit variables
+     */
+    private fun init() {
+        mProgressBar = findViewById(R.id.splash_screen_progress_bar)
+    }
+
+    /**
+     * Function to check if the user is opening the app for the first time
+     * If first time, navigates to LoginActivity
+     * Else, starts ConnectionService to connect to the server and login automatically
+     */
     private fun navigateActivity() {
         sharedPreferences = getSharedPreferences("SharedPref", Context.MODE_PRIVATE)
         isLoggedIn = sharedPreferences?.getBoolean("isLoggedIn", false)
@@ -39,9 +52,14 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * onResume overridden function
+     * If the user is authenticated, navigates to the GroupsActivity
+     */
     override fun onResume() {
         super.onResume()
         mBroadcastReceiver = object : BroadcastReceiver() {
+            // Executes when broadcast message is received from the ConnectionService
             override fun onReceive(context: Context?, intent: Intent?) {
                 when (intent?.action) {
                     ConnectionService.UI_AUTHENTICATED -> {
@@ -58,12 +76,8 @@ class SplashActivity : AppCompatActivity() {
     }
 
     /**
-     * initialize all lateinit variables
+     * onPause overridden function
      */
-    private fun init() {
-        mProgressBar = findViewById(R.id.splash_screen_progress_bar)
-    }
-
     override fun onPause() {
         super.onPause()
         if (mBroadcastReceiver != null)

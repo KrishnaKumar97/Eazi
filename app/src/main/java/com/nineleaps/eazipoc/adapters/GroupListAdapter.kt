@@ -24,16 +24,29 @@ class GroupListAdapter(
         groupModelList = groupList
     }
 
+    /**
+     * @param parent  ViewGroup into which the new View will be added
+     * @param viewType The view type of the new View
+     * Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_of_group_item_layout, parent, false)
         return ViewHolder(view)
     }
 
+    /**
+     * Returns the total number of items in the adapter
+     */
     override fun getItemCount(): Int {
         return groupModelList.size
     }
 
+    /**
+     * @param holder ViewHolder which should be updated
+     * @param position position of the item
+     * Called by RecyclerView to display the data at the specified position
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.groupName.text = groupModelList[position].groupName
 
@@ -42,10 +55,17 @@ class GroupListAdapter(
         }
     }
 
+    /**
+     * @param itemView View of each item in the recyclerview
+     * Initializes UI elements present in the recycler layout
+     */
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val groupName: TextView = itemView.findViewById(R.id.group_name)
     }
 
+    /**
+     * Interface with function to handle click of recyclerview item
+     */
     interface CellClickListener {
         fun onCellClickListener(groupData: GroupDatabaseModel)
     }

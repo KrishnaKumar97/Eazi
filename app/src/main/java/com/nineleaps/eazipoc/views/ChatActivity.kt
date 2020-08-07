@@ -1,14 +1,10 @@
 package com.nineleaps.eazipoc.views
 
 import android.content.Context
-import android.content.Intent
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.Browser
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -23,7 +19,6 @@ import com.nineleaps.eazipoc.R
 import com.nineleaps.eazipoc.adapters.MessageListAdapter
 import com.nineleaps.eazipoc.models.MessageDatabaseModel
 import com.nineleaps.eazipoc.models.MessageModel
-import com.nineleaps.eazipoc.utils.Utils
 import com.nineleaps.eazipoc.viewmodels.MessageHistoryViewModel
 import org.jivesoftware.smack.MessageListener
 import org.jivesoftware.smack.SmackException
@@ -32,7 +27,6 @@ import org.jivesoftware.smack.packet.Message
 import org.jivesoftware.smackx.mam.MamManager
 import org.jivesoftware.smackx.muc.MucEnterConfiguration
 import org.jivesoftware.smackx.muc.MultiUserChat
-import org.jivesoftware.smackx.muc.MultiUserChatException
 import org.jivesoftware.smackx.muc.MultiUserChatManager
 import org.jxmpp.jid.EntityBareJid
 import org.jxmpp.jid.EntityJid
@@ -55,14 +49,16 @@ class ChatActivity : AppCompatActivity(), MessageListener {
     private var messageListAdapter: MessageListAdapter? = null
     private var mThread: Thread? = null
     private var mTHandler: Handler? = null
+
+    /**
+     * OnCreate overridden function
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-//        Utils.displayFullScreen(this)
         val intent = intent
         groupId = intent.getStringExtra("GROUP_ID")
-        initViews()
-        initViewModel()
+        // Calls function to check if network is available
         if (isNetworkConnected()) {
             initMuc()
             fetchArchiveMessage()
@@ -73,28 +69,50 @@ class ChatActivity : AppCompatActivity(), MessageListener {
                 Toast.LENGTH_LONG
             ).show()
         }
+        initViews()
+        initViewModel()
         initClickListeners()
         observeData()
     }
 
-    private fun initViewModel() {
-        messageHistoryViewModel =
-            ViewModelProviders.of(this).get(MessageHistoryViewModel::class.java)
+    /**
+     * Function to set uo MultiUserChatManager and MultiUserChat
+     * Function adds a listener to listen to incoming messages on the group
+     */
+    private fun initMuc() {
+        multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
+        mucJID =
+            JidCreate.entityBareFrom("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal")
+        muc =
+            multiUserChatManager.getMultiUserChat(mucJID as EntityBareJid?)
+        mucEnterConfiguration = muc.getEnterConfigurationBuilder(
+            Resourcepart.from(ApplicationClass.connection.user.split("@")[0])
+        )!!
+            .requestNoHistory()
+            .build()
+        if (!muc.isJoined)
+            muc.join(mucEnterConfiguration)
+        muc.addMessageListener(this)
     }
 
-    private fun observeData() {
-        messageHistoryViewModel.getMessageHistoryLiveData(groupId).observe(this, Observer {
-            if (it != null) {
-                messageList.clear()
-                it.forEach {
-                    messageList.add(MessageModel(it.userNickName, it.messageBody))
-                }
-                initRecyclerView()
-            }
-        })
+    /**
+     * Function to call a method to fetch Archived messages in the background
+     */
+    private fun fetchArchiveMessage() {
+        if (mThread == null || !mThread!!.isAlive) {
+            mThread = Thread(Runnable {
+                Looper.prepare()
+                mTHandler = Handler()
+                fetchMAM()
+                Looper.loop()
+            })
+            mThread!!.start()
+        }
     }
 
-
+    /**
+     * Function to initialize all the lateinit variables
+     */
     private fun initViews() {
         sendButton = findViewById(R.id.button_chatbox_send)
         recyclerViewForMessageList = findViewById(R.id.recyclerViewChat)
@@ -103,6 +121,18 @@ class ChatActivity : AppCompatActivity(), MessageListener {
         heading.text = groupId
     }
 
+    /**
+     * Function to initialize groupViewModel
+     */
+    private fun initViewModel() {
+        messageHistoryViewModel =
+            ViewModelProviders.of(this).get(MessageHistoryViewModel::class.java)
+    }
+
+    /**
+     * Function to initialize the click listeners of buttons present in the activity
+     * On click of send button, sends a message on the group
+     */
     private fun initClickListeners() {
         sendButton.setOnClickListener {
             try {
@@ -125,26 +155,28 @@ class ChatActivity : AppCompatActivity(), MessageListener {
         }
     }
 
-    private fun initMuc() {
-        multiUserChatManager = MultiUserChatManager.getInstanceFor(ApplicationClass.connection)
-        mucJID =
-            JidCreate.entityBareFrom("$groupId@conference.ip-172-31-14-161.us-east-2.compute.internal")
-        muc =
-            multiUserChatManager.getMultiUserChat(mucJID as EntityBareJid?)
-        mucEnterConfiguration = muc.getEnterConfigurationBuilder(
-            Resourcepart.from(ApplicationClass.connection.user.split("@")[0])
-        )!!
-            .requestNoHistory()
-            .build()
-        if (!muc.isJoined)
-            muc.join(mucEnterConfiguration)
-        muc.addMessageListener(this)
+    /**
+     * Function to observe changes in message history list live data
+     */
+    private fun observeData() {
+        messageHistoryViewModel.getMessageHistoryLiveData(groupId).observe(this, Observer {
+            if (it != null) {
+                messageList.clear()
+                it.forEach {
+                    messageList.add(MessageModel(it.userNickName, it.messageBody))
+                }
+                initRecyclerView()
+            }
+        })
     }
 
+    /**
+     * This function helps to initialize Recycler view
+     */
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         recyclerViewForMessageList.layoutManager = layoutManager as RecyclerView.LayoutManager?
-        layoutManager.stackFromEnd = true;
+        layoutManager.stackFromEnd = true
 
         messageListAdapter =
             MessageListAdapter(
@@ -153,41 +185,10 @@ class ChatActivity : AppCompatActivity(), MessageListener {
         recyclerViewForMessageList.adapter = messageListAdapter
     }
 
-    override fun onStop() {
-        super.onStop()
-        if (isNetworkConnected())
-            muc.removeMessageListener(this)
-    }
-
-    override fun processMessage(message: Message?) {
-        if (message?.from.toString().contains("/")) {
-            messageList.add(MessageModel(message?.from.toString().split("/")[1], message?.body))
-            messageHistoryViewModel.storeMessageInDB(
-                MessageDatabaseModel(
-                    groupName = groupId,
-                    userNickName = message?.from.toString().split("/")[1],
-                    messageBody = message?.body
-                )
-            )
-            runOnUiThread {
-                messageListAdapter?.notifyDataSetChanged()
-            }
-        }
-    }
-
-    private fun fetchArchiveMessage() {
-
-        if (mThread == null || !mThread!!.isAlive) {
-            mThread = Thread(Runnable {
-                Looper.prepare()
-                mTHandler = Handler()
-                fetchMAM()
-                Looper.loop()
-            })
-            mThread!!.start()
-        }
-    }
-
+    /**
+     * Function to fetch archived messages for the particular group
+     * Calls the function to store the messages locally
+     */
     private fun fetchMAM() {
         try {
             val listOfMessages = ArrayList<MessageDatabaseModel>()
@@ -213,7 +214,7 @@ class ChatActivity : AppCompatActivity(), MessageListener {
                 i += 1
             }
             messageHistoryViewModel.storeMessageListInDB(groupId, listOfMessages)
-        }catch (e: SmackException.NoResponseException) {
+        } catch (e: SmackException.NoResponseException) {
             Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
         } catch (e: XMPPException.XMPPErrorException) {
             Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
@@ -227,6 +228,10 @@ class ChatActivity : AppCompatActivity(), MessageListener {
 
     }
 
+    /**
+     * Function to return if the network is available or not
+     * @return Boolean: True or False depending on whether network is available or not
+     */
     private fun isNetworkConnected(): Boolean {
         val connectivityManager =
             getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -234,4 +239,34 @@ class ChatActivity : AppCompatActivity(), MessageListener {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
+    /**
+     * This function is called whenever a message is received on the group.
+     * The message is then stored locally
+     * @param message: Message Received
+     */
+    override fun processMessage(message: Message?) {
+        if (message?.from.toString().contains("/")) {
+            messageList.add(MessageModel(message?.from.toString().split("/")[1], message?.body))
+            messageHistoryViewModel.storeMessageInDB(
+                MessageDatabaseModel(
+                    groupName = groupId,
+                    userNickName = message?.from.toString().split("/")[1],
+                    messageBody = message?.body
+                )
+            )
+            runOnUiThread {
+                messageListAdapter?.notifyDataSetChanged()
+            }
+        }
+    }
+
+    /**
+     * onStop overridden function
+     * Removes message listener
+     */
+    override fun onStop() {
+        super.onStop()
+        if (isNetworkConnected())
+            muc.removeMessageListener(this)
+    }
 }

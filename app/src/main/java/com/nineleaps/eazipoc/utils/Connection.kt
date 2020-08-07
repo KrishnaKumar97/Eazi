@@ -44,6 +44,9 @@ class Connection(context: Context) : ConnectionListener {
         isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
     }
 
+    /**
+     * Function to establish a connection to the server
+     */
     @Throws(IOException::class, XMPPException::class, SmackException::class)
     fun connect() {
         try {
@@ -100,13 +103,19 @@ class Connection(context: Context) : ConnectionListener {
 
     }
 
-    private fun showContactListActivityWhenAuthenticated() {
+    /**
+     * Function to send a broadcast telling that the authentication is successfull with the server
+     */
+    private fun postAuthentication() {
         val i = Intent(ConnectionService.UI_AUTHENTICATED)
         i.setPackage(mApplicationContext?.packageName)
         mApplicationContext?.sendBroadcast(i)
         Log.d(TAG, "Sent the broadcast that we are authenticated")
     }
 
+    /**
+     * Function to disconnect from the server
+     */
     fun disconnect() {
         Log.d(TAG, "Disconnecting from server $mServiceName")
         try {
@@ -122,29 +131,41 @@ class Connection(context: Context) : ConnectionListener {
 
     }
 
+    /**
+     * Override function executed when connection is successful
+     */
     override fun connected(connection: XMPPConnection?) {
         ConnectionService.sConnectionState =
             ConnectionState.CONNECTED
         Log.d(TAG, "Connected Successfully")
     }
 
+    /**
+     * Override function executed when connection is closed
+     */
     override fun connectionClosed() {
         ConnectionService.sConnectionState =
             ConnectionState.DISCONNECTED
         Log.d(TAG, "Connectionclosed()")
     }
 
+    /**
+     * Override function executed when connection is closed due to an error
+     */
     override fun connectionClosedOnError(e: Exception?) {
         ConnectionService.sConnectionState =
             ConnectionState.DISCONNECTED
         Log.d(TAG, "ConnectionClosedOnError, error " + e.toString())
     }
 
+    /**
+     * Override function executed when connection is authenticated
+     */
     override fun authenticated(connection: XMPPConnection?, resumed: Boolean) {
         ConnectionService.sConnectionState =
             ConnectionState.AUTHENTICATED
         Log.d(TAG, "Authenticated Successfully")
-        showContactListActivityWhenAuthenticated()
+        postAuthentication()
     }
 
 }

@@ -2,12 +2,8 @@ package com.nineleaps.eazipoc.views
 
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -19,35 +15,31 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.nineleaps.eazipoc.ApplicationClass
-import com.nineleaps.eazipoc.utils.Utils
-import com.nineleaps.eazipoc.broadcastreceivers.GroupBroadcastReceiver
-import com.nineleaps.eazipoc.services.GroupService
 import com.nineleaps.eazipoc.R
 import com.nineleaps.eazipoc.adapters.GroupListAdapter
 import com.nineleaps.eazipoc.models.GroupDatabaseModel
-import com.nineleaps.eazipoc.models.GroupModel
-import com.nineleaps.eazipoc.repositories.GroupRepository
+import com.nineleaps.eazipoc.services.GroupService
+import com.nineleaps.eazipoc.utils.Utils
 import com.nineleaps.eazipoc.viewmodels.GroupViewModel
-import kotlinx.android.synthetic.main.activity_groups.*
 
 class GroupsActivity : AppCompatActivity(), GroupListAdapter.CellClickListener {
 
-
     private lateinit var createGroupButton: MaterialButton
-    private var groupBroadcastReceiver: GroupBroadcastReceiver? = null
     private lateinit var groupViewModel: GroupViewModel
     private val groupList = ArrayList<GroupDatabaseModel>()
     private lateinit var recyclerViewForGroupList: RecyclerView
-    private lateinit var noGroupsAvailable: ImageView
-    private var mThread: Thread? = null
-    private var mTHandler: Handler? = null
+    private lateinit var noGroupsAvailableImageView: ImageView
     private lateinit var mProgressBar: ProgressBar
     private var groupListAdapter: GroupListAdapter? = null
-    private lateinit var refresh_group_button: MaterialButton
+
+    /**
+     * OnCreate overridden function
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_groups)
 
+        // Calls function to check if network is available
         if (!isNetworkConnected()) {
             Toast.makeText(
                 this,
@@ -55,92 +47,70 @@ class GroupsActivity : AppCompatActivity(), GroupListAdapter.CellClickListener {
                 Toast.LENGTH_LONG
             ).show()
         }
-//        if (mThread == null || !mThread!!.isAlive) {
-//            mThread = Thread(Runnable {
-//                Looper.prepare()
-//                mTHandler = Handler()
-//                ApplicationClass.messageHistoryDatabase.clearAllTables()
-//                Looper.loop()
-//            })
-//            mThread!!.start()
-//        }
+
+        // calling function to make the activity display in full screen
         Utils.displayFullScreen(this)
         initViews()
         initViewModel()
         observeData()
-        groupBroadcastReceiver = GroupBroadcastReceiver()
         initClickListener()
     }
 
-    override fun onStart() {
-        super.onStart()
-        startAllServices()
+    /**
+     * Function to return if the network is available or not
+     * @return Boolean: True or False depending on whether network is available or not
+     */
+    private fun isNetworkConnected(): Boolean {
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
-    fun startAllServices() {
-        startService(Intent(this, GroupService::class.java))
-        groupBroadcastReceiver?.getGroups()?.let {
-            GroupRepository.instance().addDataSource(it)
-        }
-        val filter = IntentFilter(GroupService.GROUP_FETCH)
-        registerReceiver(groupBroadcastReceiver, filter)
+    /**
+     * Function to initialize all the lateinit variables
+     */
+    private fun initViews() {
+        createGroupButton = findViewById(R.id.create_group_button)
+        noGroupsAvailableImageView = findViewById(R.id.empty_state_image_view)
+        recyclerViewForGroupList = findViewById(R.id.recyclerViewGroup)
+        mProgressBar = findViewById(R.id.groups_progress_bar)
     }
 
-    fun stopAllServices() {
-        stopService(Intent(this, GroupService::class.java))
-        groupBroadcastReceiver?.getGroups()?.let { GroupRepository.instance().removeDataSource(it) }
-        unregisterReceiver(groupBroadcastReceiver)
-    }
-
+    /**
+     * Function to initialize groupViewModel
+     */
     private fun initViewModel() {
         groupViewModel = ViewModelProviders.of(this)
             .get(GroupViewModel::class.java)
     }
 
-    override fun onStop() {
-        super.onStop()
-        stopAllServices()
-    }
-
-    private fun initViews() {
-        createGroupButton = findViewById(R.id.create_group_button)
-        noGroupsAvailable = findViewById(R.id.empty_state_image_view)
-        recyclerViewForGroupList = findViewById(R.id.recyclerViewGroup)
-        refresh_group_button = findViewById(R.id.refresh_group_button)
-        mProgressBar = findViewById(R.id.groups_progress_bar)
-    }
-
+    /**
+     * Function to observe changes in group list live data
+     */
     private fun observeData() {
         groupViewModel.getGroupListLiveData(ApplicationClass.connection.user.split("@")[0])
             .observe(this, Observer {
                 if (!it.isNullOrEmpty()) {
                     groupList.clear()
                     recyclerViewForGroupList.visibility = View.VISIBLE
-                    noGroupsAvailable.visibility = View.GONE
+                    noGroupsAvailableImageView.visibility = View.GONE
                     groupList.addAll(it)
                     initRecyclerView()
                     groupListAdapter?.notifyDataSetChanged()
                 } else {
                     recyclerViewForGroupList.visibility = View.GONE
-                    noGroupsAvailable.visibility = View.VISIBLE
+                    noGroupsAvailableImageView.visibility = View.VISIBLE
                 }
             })
     }
 
-    private fun initClickListener() {
-        createGroupButton.setOnClickListener {
-            startActivity(Intent(this, GroupDetailsActivity::class.java))
-        }
-
-        refresh_group_button.setOnClickListener {
-            stopAllServices()
-            startAllServices()
-        }
-    }
-
+    /**
+     * This function helps to initialize Recycler view
+     */
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
-        recyclerViewForGroupList.layoutManager = layoutManager as RecyclerView.LayoutManager?
+        recyclerViewForGroupList.layoutManager = layoutManager
         groupListAdapter =
             GroupListAdapter(
                 groupList, this
@@ -148,6 +118,54 @@ class GroupsActivity : AppCompatActivity(), GroupListAdapter.CellClickListener {
         recyclerViewForGroupList.adapter = groupListAdapter
     }
 
+    /**
+     * Function to initialize the click listeners of buttons present in the activity
+     * On click of createGroup button, navigates to the GroupDetails activity
+     */
+    private fun initClickListener() {
+        createGroupButton.setOnClickListener {
+            startActivity(Intent(this, GroupDetailsActivity::class.java))
+        }
+    }
+
+    /**
+     * onStart overridden function
+     * Calls Function to start the group service
+     */
+    override fun onStart() {
+        super.onStart()
+        startGroupService()
+    }
+
+    /**
+     * Function to start group service
+     * Registers group broadcast receiver
+     */
+    private fun startGroupService() {
+        startService(Intent(this, GroupService::class.java))
+    }
+
+    /**
+     * onStop overridden function
+     * Calls Function to stop the group service
+     */
+    override fun onStop() {
+        super.onStop()
+        stopGroupService()
+    }
+
+    /**
+     * Function to stop group service
+     * UnRegisters group broadcast receiver
+     */
+    private fun stopGroupService() {
+        stopService(Intent(this, GroupService::class.java))
+    }
+
+    /**
+     * Function to handle onClick event of each group
+     * Navigates to the chat activity of the selected group
+     */
     override fun onCellClickListener(groupData: GroupDatabaseModel) {
         mProgressBar.visibility = View.VISIBLE
         val intent = Intent(this, ChatActivity::class.java)
@@ -156,10 +174,4 @@ class GroupsActivity : AppCompatActivity(), GroupListAdapter.CellClickListener {
         mProgressBar.visibility = View.GONE
     }
 
-    private fun isNetworkConnected(): Boolean {
-        val connectivityManager =
-            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected
-    }
 }

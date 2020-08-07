@@ -8,6 +8,10 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class TypeConverterObject {
+    /**
+     * Function to convert incoming List object to String
+     * @return String
+     */
     @androidx.room.TypeConverter
     public String fromMessageDatabaseModelList(List<MessageDatabaseModel> messageDatabaseModelList) {
         if (messageDatabaseModelList == null) {
@@ -19,6 +23,10 @@ public class TypeConverterObject {
         return gson.toJson(messageDatabaseModelList, type);
     }
 
+    /**
+     * Function to convert incoming String object to List of datamodels
+     * @return List of datamodels
+     */
     @androidx.room.TypeConverter
     public List<MessageDatabaseModel> toMessageDatabaseModelList(String messageDatabaseModelString) {
         if (messageDatabaseModelString == null) {
