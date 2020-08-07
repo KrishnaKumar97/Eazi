@@ -16,6 +16,10 @@ class UserBroadcastReceiver : BroadcastReceiver() {
         return userLiveData
     }
 
+    /**
+     * Function executed when users are fetched from the server
+     * Broadcast is sent from UserService class on fetching the list of users
+     */
     override fun onReceive(context: Context?, intent: Intent?) {
         when (intent?.action) {
             UserService.USERS_FETCHED -> {

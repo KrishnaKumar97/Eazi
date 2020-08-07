@@ -30,6 +30,14 @@
                 android:text="Sample"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
+
+            <ProgressBar
+                android:id="@+id/adapter_progress_bar"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:elevation="2dp"
+                android:visibility="gone" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

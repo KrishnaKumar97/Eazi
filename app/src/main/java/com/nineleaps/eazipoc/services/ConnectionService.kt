@@ -9,7 +9,9 @@ import android.util.Log
 import com.nineleaps.eazipoc.utils.Connection
 import com.nineleaps.eazipoc.utils.Connection.ConnectionState
 
-
+/**
+ * Service which is responsible to establishing connection with the server
+ */
 class ConnectionService : Service() {
     companion object {
         var sConnectionState: ConnectionState? = null
@@ -30,9 +32,12 @@ class ConnectionService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d(TAG, "onCreate()");
+        Log.d(TAG, "onCreate()")
     }
 
+    /**
+     * Function calls method to initialize the connection in the background
+     */
     private fun start() {
         Log.d(TAG, " Service Start() function called.")
         if (!mActive) {
@@ -49,6 +54,9 @@ class ConnectionService : Service() {
         }
     }
 
+    /**
+     * Function to initialize the connection and invoke methods in Connection class to connect with the server
+     */
     private fun initConnection() {
         Log.d(TAG, "initConnection()")
         if (mConnection == null) {
@@ -56,12 +64,16 @@ class ConnectionService : Service() {
         }
         try {
             mConnection?.connect()
+
         } catch (e: Exception) {
             e.printStackTrace()
             stopSelf()
         }
     }
 
+    /**
+     * Function to invoke methods in Connection class to disconnect with the server
+     */
     private fun stop() {
         Log.d(TAG, "stop()")
         mActive = false
